@@ -157,7 +157,7 @@
 
 .passwordWrapper .input {
   padding-right: 58px;
-}
+
 
 .eye {
   position: absolute;
@@ -173,6 +173,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
 }
 
 .eye:hover {
