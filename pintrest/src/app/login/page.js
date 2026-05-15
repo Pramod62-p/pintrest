@@ -4,111 +4,90 @@ import { useState } from "react";
 import styles from "./page.module.css";
 
 export default function AuthPage() {
-  const [isSignup, setIsSignup] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className={styles.container}>
-      <div className={styles.card}>
 
-        <div className={styles.logo}>A</div>
+      {/* Top Navbar */}
+      <div className={styles.navbar}>
+        <div className={styles.logoSection}>
+          <div className={styles.logo}>P</div>
+          <span>Pinterest</span>
+        </div>
+
+        <button className={styles.signupBtn}>
+          Sign up
+        </button>
+      </div>
+
+      {/* Login Box */}
+      <div className={styles.loginBox}>
 
         <h1 className={styles.title}>
-          {isSignup ? "Create Account" : "Welcome Back"}
+          Log in to Pinterest
         </h1>
 
-        <p className={styles.subtitle}>
-          {isSignup
-            ? "Sign up to continue"
-            : "Login to continue your account"}
+        <button className={styles.googleBtn}>
+          <span className={styles.googleIcon}>G</span>
+          Continue with Google
+        </button>
+
+        <div className={styles.or}>OR</div>
+
+        <input
+          type="email"
+          placeholder="Email"
+          className={styles.input}
+        />
+
+        <div className={styles.passwordWrapper}>
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            className={styles.input}
+          />
+
+          <span
+            className={styles.eye}
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            👁
+          </span>
+        </div>
+
+        <a href="#" className={styles.forgot}>
+          Forgot your password?
+        </a>
+
+        <button className={styles.loginBtn}>
+          Log in
+        </button>
+
+        <p className={styles.info}>
+          Facebook login is no longer available
         </p>
 
-        <form className={styles.form}>
+        <a href="#" className={styles.update}>
+          Update login method
+        </a>
 
-          {isSignup && (
-            <div className={styles.inputGroup}>
-              <input
-                type="text"
-                placeholder="Full Name"
-                className={styles.input}
-              />
-            </div>
-          )}
+        <p className={styles.signupText}>
+          No Account?
+          <span> Sign up</span>
+        </p>
 
-          <div className={styles.inputGroup}>
-            <input
-              type={isSignup ? "email" : "text"}
-              placeholder={isSignup ? "Email Address" : "Username"}
-              className={styles.input}
-            />
-          </div>
+        <p className={styles.business}>
+          Are you a business?
+          <span> Get started here!</span>
+        </p>
 
-          {isSignup && (
-            <div className={styles.inputGroup}>
-              <input
-                type="text"
-                placeholder="Username"
-                className={styles.input}
-              />
-            </div>
-          )}
+        <p className={styles.terms}>
+          By continuing, you agree to Pinterest's Terms of
+          Service and acknowledge you've read our Privacy
+          Policy.
+        </p>
 
-          <div className={styles.inputGroup}>
-            <input
-              type="password"
-              placeholder="Password"
-              className={styles.input}
-            />
-
-            <span className={styles.show}>
-              Show
-            </span>
-          </div>
-
-          {isSignup && (
-            <div className={styles.inputGroup}>
-              <input
-                type="password"
-                placeholder="Confirm Password"
-                className={styles.input}
-              />
-            </div>
-          )}
-
-          {!isSignup && (
-            <div className={styles.row}>
-              <label className={styles.remember}>
-                <input type="checkbox" />
-                Remember me
-              </label>
-
-              <a href="#" className={styles.link}>
-                Forgot Password?
-              </a>
-            </div>
-          )}
-
-          {isSignup && (
-            <label className={styles.remember}>
-              <input type="checkbox" />
-              I agree to Terms & Conditions
-            </label>
-          )}
-
-          <button type="submit" className={styles.button}>
-            {isSignup ? "Sign Up" : "Login"}
-          </button>
-
-          <p className={styles.footer}>
-            {isSignup
-              ? "Already have an account?"
-              : "Don’t have an account?"}
-
-            <span onClick={() => setIsSignup(!isSignup)}>
-              {isSignup ? " Login" : " Sign Up"}
-            </span>
-          </p>
-
-        </form>
       </div>
     </div>
   );
