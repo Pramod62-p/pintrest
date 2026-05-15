@@ -8,7 +8,82 @@ export default function AuthPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
 
+  const [formData, setFormData] = useState({
+    fullName: "",
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  // Handle Input Change
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // Login / Signup Submit
+
+  const handleSubmit = () => {
+
+    if (!formData.email || !formData.password) {
+      alert("Please fill all required fields");
+      return;
+    }
+
+    if (isSignup) {
+
+      if (
+        !formData.fullName ||
+        !formData.username ||
+        !formData.confirmPassword
+      ) {
+        alert("Please fill all signup fields");
+        return;
+      }
+
+      if (formData.password !== formData.confirmPassword) {
+        alert("Passwords do not match");
+        return;
+      }
+
+      alert("Account Created Successfully!");
+    }
+
+    else {
+      alert("Login Successful!");
+    }
+  };
+
+  // Google Login
+
+  const handleGoogleLogin = () => {
+    alert("Google Login Clicked");
+  };
+
+  // Forgot Password
+
+  const handleForgotPassword = () => {
+    alert("Redirecting to Forgot Password Page");
+  };
+
+  // Update Login Method
+
+  const handleUpdateMethod = () => {
+    alert("Redirecting to Update Login Method");
+  };
+
+  // Business Button
+
+  const handleBusiness = () => {
+    alert("Business Page Opened");
+  };
+
   return (
+
     <div className={styles.container}>
 
       {/* Navbar */}
@@ -45,6 +120,7 @@ export default function AuthPage() {
         <button
           type="button"
           className={styles.googleBtn}
+          onClick={handleGoogleLogin}
         >
           <span className={styles.googleIcon}>
             G
@@ -62,22 +138,31 @@ export default function AuthPage() {
         {isSignup && (
           <input
             type="text"
+            name="fullName"
             placeholder="Full Name"
             className={styles.input}
+            value={formData.fullName}
+            onChange={handleChange}
           />
         )}
 
         <input
           type="email"
+          name="email"
           placeholder="Email"
           className={styles.input}
+          value={formData.email}
+          onChange={handleChange}
         />
 
         {isSignup && (
           <input
             type="text"
+            name="username"
             placeholder="Username"
             className={styles.input}
+            value={formData.username}
+            onChange={handleChange}
           />
         )}
 
@@ -87,8 +172,11 @@ export default function AuthPage() {
 
           <input
             type={showPassword ? "text" : "password"}
+            name="password"
             placeholder="Password"
             className={styles.input}
+            value={formData.password}
+            onChange={handleChange}
           />
 
           <button
@@ -96,7 +184,7 @@ export default function AuthPage() {
             className={styles.eyeBtn}
             onClick={() => setShowPassword(!showPassword)}
           >
-            👁
+            {showPassword ? "🙈" : "👁"}
           </button>
 
         </div>
@@ -106,17 +194,24 @@ export default function AuthPage() {
         {isSignup && (
           <input
             type="password"
+            name="confirmPassword"
             placeholder="Confirm Password"
             className={styles.input}
+            value={formData.confirmPassword}
+            onChange={handleChange}
           />
         )}
 
         {/* Forgot Password */}
 
         {!isSignup && (
-          <a href="#" className={styles.forgot}>
+          <button
+            type="button"
+            className={styles.forgotBtn}
+            onClick={handleForgotPassword}
+          >
             Forgot your password?
-          </a>
+          </button>
         )}
 
         {/* Terms */}
@@ -133,6 +228,7 @@ export default function AuthPage() {
         <button
           type="button"
           className={styles.loginBtn}
+          onClick={handleSubmit}
         >
           {isSignup ? "Create Account" : "Log in"}
         </button>
@@ -146,9 +242,13 @@ export default function AuthPage() {
               Facebook login is no longer available
             </p>
 
-            <a href="#" className={styles.update}>
+            <button
+              type="button"
+              className={styles.updateBtn}
+              onClick={handleUpdateMethod}
+            >
               Update login method
-            </a>
+            </button>
 
             <p className={styles.signupText}>
               No Account?
@@ -171,13 +271,16 @@ export default function AuthPage() {
 
         )}
 
-        <p className={styles.business}>
+        <button
+          type="button"
+          className={styles.businessBtn}
+          onClick={handleBusiness}
+        >
           Are you a business?
-
           <span>
             {" "}Get started here!
           </span>
-        </p>
+        </button>
 
         <p className={styles.terms}>
           By continuing, you agree to Pinterest's
