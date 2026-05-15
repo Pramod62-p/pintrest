@@ -11,33 +11,32 @@
   overflow: hidden;
 }
 
-/* soft glowing background */
+/* Background Glow */
 
 .container::before {
   content: "";
   position: absolute;
-  width: 500px;
-  height: 500px;
+  width: 450px;
+  height: 450px;
   right: -120px;
-  top: 120px;
+  top: 100px;
   background: radial-gradient(
     circle,
     rgba(255, 255, 255, 0.9),
     rgba(255, 255, 255, 0)
   );
-  opacity: 0.8;
 }
 
 .container::after {
   content: "";
   position: absolute;
-  width: 400px;
-  height: 400px;
+  width: 350px;
+  height: 350px;
   left: -120px;
   bottom: -120px;
   background: radial-gradient(
     circle,
-    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.5),
     rgba(255, 255, 255, 0)
   );
 }
@@ -45,11 +44,11 @@
 /* Navbar */
 
 .navbar {
-  height: 90px;
+  height: 72px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 32px;
+  padding: 0 20px;
   position: relative;
   z-index: 2;
 }
@@ -57,22 +56,22 @@
 .logoSection {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   color: #e60023;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 700;
 }
 
 .logo {
-  width: 42px;
-  height: 42px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background: #e60023;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: bold;
 }
 
@@ -80,27 +79,27 @@
   background: transparent;
   color: #c60021;
   border: 2px solid #c60021;
-  padding: 12px 28px;
-  border-radius: 40px;
-  font-size: 18px;
+  padding: 9px 20px;
+  border-radius: 30px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
 }
 
-/* Login Box */
+/* Login Section */
 
 .loginBox {
-  max-width: 520px;
-  margin: 30px auto;
-  padding: 20px 28px 50px;
+  max-width: 420px;
+  margin: 10px auto;
+  padding: 10px 22px 40px;
   position: relative;
   z-index: 2;
 }
 
 .title {
   text-align: center;
-  font-size: 68px;
-  margin-bottom: 45px;
+  font-size: 42px;
+  margin-bottom: 30px;
   font-weight: 800;
   color: #111;
   line-height: 1.1;
@@ -108,45 +107,45 @@
 
 .googleBtn {
   width: 100%;
-  height: 88px;
+  height: 62px;
   border: none;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.95);
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
 
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 18px;
+  gap: 12px;
 }
 
 .googleIcon {
-  font-size: 34px;
+  font-size: 24px;
 }
 
 .or {
   text-align: center;
-  margin: 38px 0;
-  font-size: 34px;
+  margin: 24px 0;
+  font-size: 22px;
   font-weight: 700;
   color: #7c7c7c;
 }
 
 .input {
   width: 100%;
-  height: 92px;
+  height: 66px;
   border: none;
-  border-radius: 28px;
-  padding: 0 28px;
-  font-size: 34px;
-  margin-bottom: 22px;
+  border-radius: 22px;
+  padding: 0 22px;
+  font-size: 22px;
+  margin-bottom: 18px;
   outline: none;
   background: rgba(255, 255, 255, 0.92);
   color: #555;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
 }
 
 .input::placeholder {
@@ -159,26 +158,26 @@
 
 .eye {
   position: absolute;
-  right: 26px;
-  top: 34px;
+  right: 20px;
+  top: 22px;
   cursor: pointer;
-  font-size: 34px;
+  font-size: 24px;
   color: #888;
 }
 
 .forgot {
   display: block;
-  margin-top: 8px;
-  margin-bottom: 38px;
+  margin-top: 5px;
+  margin-bottom: 28px;
   color: #b10025;
   font-weight: 500;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .loginBtn {
   width: 100%;
-  height: 88px;
+  height: 66px;
   border: none;
   border-radius: 999px;
   background: linear-gradient(
@@ -187,36 +186,36 @@
     #e60023 100%
   );
   color: white;
-  font-size: 34px;
+  font-size: 24px;
   font-weight: 700;
   cursor: pointer;
   box-shadow:
-    0 10px 30px rgba(230, 0, 35, 0.45),
-    0 0 30px rgba(255, 0, 51, 0.25);
+    0 8px 20px rgba(230, 0, 35, 0.35),
+    0 0 20px rgba(255, 0, 51, 0.2);
 }
 
 .info {
   text-align: center;
-  margin-top: 42px;
-  font-size: 24px;
+  margin-top: 30px;
+  font-size: 18px;
   color: #111;
 }
 
 .update {
   display: inline-block;
-  margin-top: 12px;
-  padding: 8px 14px;
+  margin-top: 8px;
+  padding: 6px 12px;
   border: 1px solid #999;
-  border-radius: 8px;
+  border-radius: 6px;
   color: #111;
-  font-size: 18px;
+  font-size: 14px;
   text-decoration: none;
 }
 
 .signupText {
   text-align: center;
-  margin-top: 48px;
-  font-size: 26px;
+  margin-top: 38px;
+  font-size: 22px;
   color: #111;
 }
 
@@ -228,8 +227,8 @@
 
 .business {
   text-align: center;
-  margin-top: 10px;
-  font-size: 20px;
+  margin-top: 8px;
+  font-size: 16px;
   color: #c40028;
 }
 
@@ -240,10 +239,10 @@
 
 .terms {
   text-align: center;
-  margin-top: 60px;
+  margin-top: 45px;
   color: #4f4f4f;
-  font-size: 16px;
-  line-height: 1.8;
+  font-size: 13px;
+  line-height: 1.7;
   padding: 0 10px;
 }
 
@@ -252,35 +251,50 @@
 @media (max-width: 500px) {
 
   .navbar {
-    padding: 0 18px;
+    height: 68px;
+    padding: 0 16px;
   }
 
-  .title {
-    font-size: 48px;
-    margin-bottom: 35px;
+  .logoSection {
+    font-size: 16px;
   }
 
-  .googleBtn {
-    height: 74px;
-    font-size: 22px;
-  }
-
-  .input {
-    height: 76px;
-    font-size: 26px;
-  }
-
-  .loginBtn {
-    height: 78px;
-    font-size: 30px;
-  }
-
-  .or {
-    font-size: 28px;
+  .logo {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
   }
 
   .signupBtn {
-    font-size: 16px;
-    padding: 10px 22px;
+    font-size: 13px;
+    padding: 8px 18px;
+  }
+
+  .title {
+    font-size: 34px;
+  }
+
+  .googleBtn {
+    height: 56px;
+    font-size: 17px;
+  }
+
+  .input {
+    height: 58px;
+    font-size: 18px;
+  }
+
+  .loginBtn {
+    height: 58px;
+    font-size: 22px;
+  }
+
+  .or {
+    font-size: 20px;
+  }
+
+  .eye {
+    top: 18px;
+    font-size: 22px;
   }
 }
