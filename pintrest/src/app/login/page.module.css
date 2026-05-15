@@ -1,3 +1,5 @@
+/* page.module.css */
+
 * {
   margin: 0;
   padding: 0;
@@ -14,53 +16,49 @@
 /* Navbar */
 
 .navbar {
-  width: 100%;
-  height: 82px;
+  height: 80px;
   background: #ffffff;
-  border-bottom: 1px solid #e2e2e2;
+  border-bottom: 1px solid #ddd;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  padding: 0 24px;
+  padding: 0 20px;
 }
 
 .logoSection {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 
   color: #e60023;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
 }
 
 .logo {
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
 
   border-radius: 50%;
   background: #e60023;
-  color: #ffffff;
+  color: white;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  font-size: 24px;
-  font-weight: 700;
+  font-weight: bold;
 }
 
 .signupBtn {
   border: none;
-  outline: none;
-
   background: #e60023;
-  color: #ffffff;
+  color: white;
 
-  padding: 13px 26px;
-  border-radius: 999px;
+  padding: 12px 24px;
+  border-radius: 30px;
 
   font-size: 16px;
   font-weight: 600;
@@ -70,53 +68,52 @@
 }
 
 .signupBtn:hover {
-  background: #c8001f;
+  background: #c4001d;
 }
 
 /* Login Box */
 
 .loginBox {
   width: 100%;
-  max-width: 450px;
+  max-width: 430px;
 
-  margin: 50px auto;
+  margin: 40px auto;
   padding: 20px;
 }
-
-/* Title */
 
 .title {
   text-align: center;
 
-  font-size: 56px;
-  line-height: 1.1;
+  font-size: 42px;
   font-weight: 700;
 
-  color: #111111;
+  margin-bottom: 35px;
 
-  margin-bottom: 40px;
+  color: #111;
+  line-height: 1.2;
 }
 
 /* Google Button */
 
 .googleBtn {
   width: 100%;
-  height: 64px;
+  height: 60px;
 
-  border: 1px solid #cccccc;
-  border-radius: 20px;
+  border: 1px solid #ccc;
+  border-radius: 16px;
 
-  background: #ffffff;
+  background: white;
+
+  font-size: 18px;
+  font-weight: 500;
+
+  cursor: pointer;
 
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
 
-  font-size: 18px;
-  font-weight: 500;
-
-  cursor: pointer;
   transition: 0.3s;
 }
 
@@ -125,9 +122,9 @@
 }
 
 .googleIcon {
+  font-size: 22px;
+  font-weight: bold;
   color: #4285f4;
-  font-size: 24px;
-  font-weight: 700;
 }
 
 /* OR */
@@ -135,30 +132,28 @@
 .or {
   text-align: center;
 
-  margin: 30px 0;
+  margin: 28px 0;
 
   font-size: 22px;
   font-weight: 700;
 
-  color: #111111;
+  color: #111;
 }
 
 /* Inputs */
 
 .input {
   width: 100%;
-  height: 66px;
+  height: 64px;
 
   border: 1px solid #bdbdbd;
-  border-radius: 22px;
+  border-radius: 20px;
 
-  background: #ffffff;
-
-  padding: 0 22px;
+  padding: 0 20px;
 
   font-size: 18px;
-  color: #111111;
 
+  background: white;
   outline: none;
 
   margin-bottom: 18px;
@@ -176,6 +171,7 @@
   position: relative;
 }
 
+.eye,
 .eyeBtn {
   position: absolute;
   top: 50%;
@@ -183,12 +179,11 @@
 
   transform: translateY(-50%);
 
+  font-size: 20px;
+  cursor: pointer;
+
   border: none;
   background: transparent;
-
-  font-size: 22px;
-
-  cursor: pointer;
 }
 
 /* Forgot Password */
@@ -196,15 +191,12 @@
 .forgot {
   display: inline-block;
 
-  margin-top: -4px;
-  margin-bottom: 24px;
-
-  color: #111111;
-
-  font-size: 16px;
-  font-weight: 600;
+  margin-bottom: 25px;
 
   text-decoration: none;
+
+  color: #111;
+  font-weight: 600;
 }
 
 .forgot:hover {
@@ -218,10 +210,10 @@
   align-items: center;
   gap: 10px;
 
-  margin-bottom: 24px;
+  margin-bottom: 25px;
 
   font-size: 15px;
-  color: #333333;
+  color: #333;
 }
 
 .termsCheck input {
@@ -236,34 +228,34 @@
   height: 60px;
 
   border: none;
-  border-radius: 999px;
+  border-radius: 30px;
 
-  background: #e0e0da;
-  color: #777777;
+  background: #e60023;
+  color: white;
 
   font-size: 20px;
   font-weight: 700;
 
   cursor: pointer;
 
-  margin-top: 5px;
-
   transition: 0.3s;
+
+  margin-top: 5px;
 }
 
 .loginBtn:hover {
-  background: #d5d5ce;
+  background: #c4001d;
 }
 
-/* Bottom Info */
+/* Bottom Text */
 
 .info {
   text-align: center;
 
   margin-top: 28px;
 
-  font-size: 17px;
-  color: #111111;
+  font-size: 18px;
+  color: #111;
 }
 
 .update {
@@ -273,11 +265,10 @@
 
   margin-top: 10px;
 
-  color: #111111;
-
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 700;
 
+  color: #111;
   text-decoration: none;
 }
 
@@ -288,10 +279,10 @@
 .signupText {
   text-align: center;
 
-  margin-top: 32px;
+  margin-top: 35px;
 
   font-size: 20px;
-  color: #111111;
+  color: #111;
 }
 
 .signupText span {
@@ -311,7 +302,8 @@
   margin-top: 24px;
 
   font-size: 20px;
-  color: #111111;
+
+  color: #111;
 }
 
 .business span {
@@ -326,9 +318,9 @@
 .terms {
   text-align: center;
 
-  margin-top: 36px;
+  margin-top: 35px;
 
-  color: #666666;
+  color: #666;
 
   font-size: 14px;
   line-height: 1.6;
@@ -339,42 +331,34 @@
 @media (max-width: 500px) {
 
   .navbar {
-    height: 74px;
-    padding: 0 16px;
+    height: 72px;
+    padding: 0 15px;
   }
 
   .logoSection {
-    font-size: 18px;
-  }
-
-  .logo {
-    width: 38px;
-    height: 38px;
-    font-size: 22px;
+    font-size: 20px;
   }
 
   .signupBtn {
-    padding: 11px 22px;
+    padding: 10px 20px;
     font-size: 15px;
   }
 
   .loginBox {
-    margin-top: 35px;
     padding: 18px;
   }
 
   .title {
-    font-size: 38px;
-    margin-bottom: 32px;
+    font-size: 32px;
   }
 
   .googleBtn {
-    height: 58px;
+    height: 56px;
     font-size: 16px;
   }
 
   .input {
-    height: 60px;
+    height: 58px;
     font-size: 16px;
   }
 
