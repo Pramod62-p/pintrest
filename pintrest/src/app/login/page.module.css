@@ -1,168 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .container {
   min-height: 100vh;
   background: #f5f5f5;
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 /* Navbar */
 
 .navbar {
-  height: 80px;
-  background: white;
+  width: 100%;
+  height: 82px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e2e2;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
-  border-bottom: 1px solid #ddd;
+
+  padding: 0 24px;
 }
 
 .logoSection {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+
   color: #e60023;
   font-size: 22px;
-  font-weight: bold;
-}
-
-.logo {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  background: #e60023;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-}
-
-.signupBtn {
-  background: #e60023;
-  color: white;
-  border: none;
-  padding: 12px 22px;
-  border-radius: 30px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-/* Login Box */
-
-.loginBox {
-  max-width: 420px;
-  margin: 50px auto;
-  padding: 20px;
-}
-
-.title {
-  text-align: center;
-  font-size: 42px;
-  margin-bottom: 35px;
   font-weight: 700;
 }
 
-.googleBtn {
-  width: 100%;
-  height: 60px;
-  border: 1px solid #ccc;
-  border-radius: 16px;
-  background: white;
-  font-size: 18px;
-  cursor: pointer;
+.logo {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+  background: #e60023;
+  color: #ffffff;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-}
 
-.googleIcon {
-  font-weight: bold;
-  color: #4285f4;
-}
-
-.or {
-  text-align: center;
-  margin: 30px 0;
-  font-size: 22px;
-  font-weight: 600;
-}
-
-.input {
-  width: 100%;
-  height: 65px;
-  border: 1px solid #bbb;
-  border-radius: 20px;
-  padding: 0 20px;
-  font-size: 20px;
-  margin-bottom: 20px;
-  outline: none;
-  background: white;
-}
-
-.passwordWrapper {
-  position: relative;
-}
-
-.eye {
-  position: absolute;
-  right: 20px;
-  top: 22px;
-  cursor: pointer;
-  font-size: 20px;
-.container {
-  min-height: 100vh;
-  background: #f5f5f5;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Navbar */
-
-.navbar {
-  height: 80px;
-  background: #ffffff;
-  border-bottom: 1px solid #ddd;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 0 20px;
-}
-
-.logoSection {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  color: #e60023;
   font-size: 24px;
   font-weight: 700;
 }
 
-.logo {
-  width: 36px;
-  height: 36px;
-
-  border-radius: 50%;
-  background: #e60023;
-  color: white;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-weight: bold;
-}
-
 .signupBtn {
   border: none;
-  background: #e60023;
-  color: white;
+  outline: none;
 
-  padding: 12px 24px;
-  border-radius: 30px;
+  background: #e60023;
+  color: #ffffff;
+
+  padding: 13px 26px;
+  border-radius: 999px;
 
   font-size: 16px;
   font-weight: 600;
@@ -172,49 +70,53 @@
 }
 
 .signupBtn:hover {
-  background: #c4001d;
+  background: #c8001f;
 }
 
 /* Login Box */
 
 .loginBox {
   width: 100%;
-  max-width: 430px;
+  max-width: 450px;
 
-  margin: 40px auto;
+  margin: 50px auto;
   padding: 20px;
 }
+
+/* Title */
 
 .title {
   text-align: center;
 
-  font-size: 42px;
+  font-size: 56px;
+  line-height: 1.1;
   font-weight: 700;
 
-  margin-bottom: 35px;
+  color: #111111;
 
-  color: #111;
+  margin-bottom: 40px;
 }
+
+/* Google Button */
 
 .googleBtn {
   width: 100%;
-  height: 60px;
+  height: 64px;
 
-  border: 1px solid #ccc;
-  border-radius: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 20px;
 
-  background: white;
-
-  font-size: 18px;
-  font-weight: 500;
-
-  cursor: pointer;
+  background: #ffffff;
 
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
 
+  font-size: 18px;
+  font-weight: 500;
+
+  cursor: pointer;
   transition: 0.3s;
 }
 
@@ -223,36 +125,40 @@
 }
 
 .googleIcon {
-  font-size: 22px;
-  font-weight: bold;
   color: #4285f4;
+  font-size: 24px;
+  font-weight: 700;
 }
+
+/* OR */
 
 .or {
   text-align: center;
 
-  margin: 28px 0;
+  margin: 30px 0;
 
   font-size: 22px;
   font-weight: 700;
 
-  color: #111;
+  color: #111111;
 }
 
 /* Inputs */
 
 .input {
   width: 100%;
-  height: 64px;
+  height: 66px;
 
   border: 1px solid #bdbdbd;
-  border-radius: 20px;
+  border-radius: 22px;
 
-  padding: 0 20px;
+  background: #ffffff;
+
+  padding: 0 22px;
 
   font-size: 18px;
+  color: #111111;
 
-  background: white;
   outline: none;
 
   margin-bottom: 18px;
@@ -270,12 +176,18 @@
   position: relative;
 }
 
-.eye {
+.eyeBtn {
   position: absolute;
-  top: 20px;
+  top: 50%;
   right: 20px;
 
-  font-size: 20px;
+  transform: translateY(-50%);
+
+  border: none;
+  background: transparent;
+
+  font-size: 22px;
+
   cursor: pointer;
 }
 
@@ -284,12 +196,15 @@
 .forgot {
   display: inline-block;
 
-  margin-bottom: 25px;
+  margin-top: -4px;
+  margin-bottom: 24px;
+
+  color: #111111;
+
+  font-size: 16px;
+  font-weight: 600;
 
   text-decoration: none;
-
-  color: #111;
-  font-weight: 600;
 }
 
 .forgot:hover {
@@ -303,10 +218,10 @@
   align-items: center;
   gap: 10px;
 
-  margin-bottom: 25px;
+  margin-bottom: 24px;
 
   font-size: 15px;
-  color: #333;
+  color: #333333;
 }
 
 .termsCheck input {
@@ -321,15 +236,17 @@
   height: 60px;
 
   border: none;
-  border-radius: 30px;
+  border-radius: 999px;
 
   background: #e0e0da;
-  color: #777;
+  color: #777777;
 
   font-size: 20px;
   font-weight: 700;
 
   cursor: pointer;
+
+  margin-top: 5px;
 
   transition: 0.3s;
 }
@@ -338,15 +255,15 @@
   background: #d5d5ce;
 }
 
-/* Bottom Text */
+/* Bottom Info */
 
 .info {
   text-align: center;
 
   margin-top: 28px;
 
-  font-size: 18px;
-  color: #111;
+  font-size: 17px;
+  color: #111111;
 }
 
 .update {
@@ -356,10 +273,12 @@
 
   margin-top: 10px;
 
-  font-size: 18px;
+  color: #111111;
+
+  font-size: 17px;
   font-weight: 700;
 
-  color: #111;
+  text-decoration: none;
 }
 
 .update:hover {
@@ -369,10 +288,10 @@
 .signupText {
   text-align: center;
 
-  margin-top: 35px;
+  margin-top: 32px;
 
   font-size: 20px;
-  color: #111;
+  color: #111111;
 }
 
 .signupText span {
@@ -392,8 +311,7 @@
   margin-top: 24px;
 
   font-size: 20px;
-
-  color: #111;
+  color: #111111;
 }
 
 .business span {
@@ -408,9 +326,9 @@
 .terms {
   text-align: center;
 
-  margin-top: 35px;
+  margin-top: 36px;
 
-  color: #666;
+  color: #666666;
 
   font-size: 14px;
   line-height: 1.6;
@@ -421,30 +339,42 @@
 @media (max-width: 500px) {
 
   .navbar {
-    height: 72px;
-    padding: 0 15px;
+    height: 74px;
+    padding: 0 16px;
   }
 
   .logoSection {
-    font-size: 20px;
+    font-size: 18px;
+  }
+
+  .logo {
+    width: 38px;
+    height: 38px;
+    font-size: 22px;
   }
 
   .signupBtn {
-    padding: 10px 20px;
+    padding: 11px 22px;
     font-size: 15px;
   }
 
+  .loginBox {
+    margin-top: 35px;
+    padding: 18px;
+  }
+
   .title {
-    font-size: 32px;
+    font-size: 38px;
+    margin-bottom: 32px;
   }
 
   .googleBtn {
-    height: 56px;
+    height: 58px;
     font-size: 16px;
   }
 
   .input {
-    height: 58px;
+    height: 60px;
     font-size: 16px;
   }
 
@@ -456,5 +386,9 @@
   .signupText,
   .business {
     font-size: 18px;
+  }
+
+  .terms {
+    font-size: 13px;
   }
 }
