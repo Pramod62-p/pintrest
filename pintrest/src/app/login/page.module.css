@@ -107,28 +107,10 @@
 
 .eye {
   position: absolute;
-
-  top: 50%;
   right: 18px;
-
-  transform: translateY(-50%);
-
-  border: none;
-  outline: none;
-
-  background: transparent;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 32px;
-  height: 32px;
-
-  font-size: 18px;
+  top: 50%;
   cursor: pointer;
-
-  z-index: 2;
+  font-size: 20px;
 }
 
 .forgot {
