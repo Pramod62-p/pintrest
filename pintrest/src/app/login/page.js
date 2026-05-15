@@ -21,6 +21,7 @@ export default function AuthPage() {
         </div>
 
         <button
+          type="button"
           className={styles.signupBtn}
           onClick={() => setIsSignup(!isSignup)}
         >
@@ -39,15 +40,22 @@ export default function AuthPage() {
             : "Log in to Pinterest"}
         </h1>
 
-        <button className={styles.googleBtn}>
-          <span className={styles.googleIcon}>G</span>
+        {/* Google Button */}
 
-          {isSignup
-            ? "Continue with Google"
-            : "Continue with Google"}
+        <button
+          type="button"
+          className={styles.googleBtn}
+        >
+          <span className={styles.googleIcon}>
+            G
+          </span>
+
+          Continue with Google
         </button>
 
-        <div className={styles.or}>OR</div>
+        <div className={styles.or}>
+          OR
+        </div>
 
         {/* Signup Fields */}
 
@@ -83,12 +91,13 @@ export default function AuthPage() {
             className={styles.input}
           />
 
-          <span
-            className={styles.eye}
+          <button
+            type="button"
+            className={styles.eyeBtn}
             onClick={() => setShowPassword(!showPassword)}
           >
             👁
-          </span>
+          </button>
 
         </div>
 
@@ -119,16 +128,20 @@ export default function AuthPage() {
           </label>
         )}
 
-        {/* Button */}
+        {/* Login / Signup Button */}
 
-        <button className={styles.loginBtn}>
+        <button
+          type="button"
+          className={styles.loginBtn}
+        >
           {isSignup ? "Create Account" : "Log in"}
         </button>
 
-        {/* Bottom Text */}
+        {/* Bottom Section */}
 
         {!isSignup ? (
           <>
+
             <p className={styles.info}>
               Facebook login is no longer available
             </p>
@@ -144,8 +157,10 @@ export default function AuthPage() {
                 {" "}Sign up
               </span>
             </p>
+
           </>
         ) : (
+
           <p className={styles.signupText}>
             Already have an account?
 
@@ -153,17 +168,21 @@ export default function AuthPage() {
               {" "}Log in
             </span>
           </p>
+
         )}
 
         <p className={styles.business}>
           Are you a business?
-          <span> Get started here!</span>
+
+          <span>
+            {" "}Get started here!
+          </span>
         </p>
 
         <p className={styles.terms}>
-          By continuing, you agree to Pinterest's Terms
-          of Service and acknowledge you've read our
-          Privacy Policy.
+          By continuing, you agree to Pinterest's
+          Terms of Service and acknowledge you've
+          read our Privacy Policy.
         </p>
 
       </div>
