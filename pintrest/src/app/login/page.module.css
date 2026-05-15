@@ -1,135 +1,201 @@
 .container {
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #0f172a, #2563eb);
-  padding: 20px;
+  background: #f5f5f5;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.card {
-  width: 100%;
-  max-width: 400px;
+/* Navbar */
+
+.navbar {
+  height: 80px;
   background: white;
-  padding: 40px 30px;
-  border-radius: 24px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.logoSection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #e60023;
+  font-size: 22px;
+  font-weight: bold;
 }
 
 .logo {
-  width: 70px;
-  height: 70px;
-  background: #2563eb;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #e60023;
   color: white;
-  font-size: 28px;
-  font-weight: bold;
-  border-radius: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 20px;
+  font-weight: bold;
+}
+
+.signupBtn {
+  background: #e60023;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Login Box */
+
+.loginBox {
+  max-width: 420px;
+  margin: 50px auto;
+  padding: 20px;
 }
 
 .title {
   text-align: center;
-  font-size: 32px;
-  color: #0f172a;
-  margin-bottom: 8px;
+  font-size: 42px;
+  margin-bottom: 35px;
+  font-weight: 700;
 }
 
-.subtitle {
-  text-align: center;
-  color: #64748b;
-  margin-bottom: 30px;
-  font-size: 14px;
-}
-
-.form {
+.googleBtn {
   width: 100%;
+  height: 60px;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  background: white;
+  font-size: 18px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
 }
 
-.inputGroup {
-  position: relative;
-  margin-bottom: 20px;
+.googleIcon {
+  font-weight: bold;
+  color: #4285f4;
+}
+
+.or {
+  text-align: center;
+  margin: 30px 0;
+  font-size: 22px;
+  font-weight: 600;
 }
 
 .input {
   width: 100%;
-  padding: 15px;
-  border: 1px solid #cbd5e1;
-  border-radius: 14px;
-  font-size: 15px;
+  height: 65px;
+  border: 1px solid #bbb;
+  border-radius: 20px;
+  padding: 0 20px;
+  font-size: 20px;
+  margin-bottom: 20px;
   outline: none;
-  transition: 0.3s;
+  background: white;
 }
 
-.input:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+.passwordWrapper {
+  position: relative;
 }
 
-.show {
+.eye {
   position: absolute;
-  top: 50%;
-  right: 15px;
-  transform: translateY(-50%);
-  font-size: 14px;
-  color: #2563eb;
+  right: 20px;
+  top: 22px;
   cursor: pointer;
+  font-size: 20px;
 }
 
-.row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-  font-size: 14px;
-}
-
-.remember {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: #334155;
-}
-
-.link {
-  color: #2563eb;
+.forgot {
+  display: block;
+  margin-top: -5px;
+  margin-bottom: 25px;
+  color: black;
+  font-weight: 600;
   text-decoration: none;
 }
 
-.link:hover {
-  text-decoration: underline;
-}
-
-.button {
+.loginBtn {
   width: 100%;
-  padding: 15px;
+  height: 60px;
   border: none;
-  border-radius: 14px;
-  background: #2563eb;
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
+  border-radius: 30px;
+  background: #d8d8d2;
+  color: #777;
+  font-size: 22px;
+  font-weight: bold;
   cursor: pointer;
-  transition: 0.3s;
 }
 
-.button:hover {
-  background: #1d4ed8;
-  transform: translateY(-2px);
-}
-
-.footer {
+.info {
   text-align: center;
-  margin-top: 24px;
-  color: #64748b;
-  font-size: 14px;
+  margin-top: 30px;
+  font-size: 18px;
 }
 
-.footer span {
-  color: #2563eb;
-  font-weight: 600;
+.update {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.signupText {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 20px;
+}
+
+.signupText span {
+  color: #3b49df;
+  font-weight: bold;
   cursor: pointer;
+}
+
+.business {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 20px;
+}
+
+.business span {
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.terms {
+  text-align: center;
+  margin-top: 35px;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Mobile */
+
+@media (max-width: 500px) {
+
+  .title {
+    font-size: 32px;
+  }
+
+  .input {
+    height: 58px;
+    font-size: 18px;
+  }
+
+  .googleBtn {
+    height: 55px;
+    font-size: 16px;
+  }
 }
