@@ -4,36 +4,60 @@ import { useState } from "react";
 import styles from "./page.module.css";
 
 export default function AuthPage() {
+
   const [showPassword, setShowPassword] = useState(false);
+  const [isSignup, setIsSignup] = useState(false);
 
   return (
     <div className={styles.container}>
 
-      {/* Top Navbar */}
+      {/* Navbar */}
+
       <div className={styles.navbar}>
+
         <div className={styles.logoSection}>
           <div className={styles.logo}>P</div>
           <span>Pinterest</span>
         </div>
 
-        <button className={styles.signupBtn}>
-          Sign up
+        <button
+          className={styles.signupBtn}
+          onClick={() => setIsSignup(!isSignup)}
+        >
+          {isSignup ? "Log in" : "Sign up"}
         </button>
+
       </div>
 
-      {/* Login Box */}
+      {/* Auth Box */}
+
       <div className={styles.loginBox}>
 
         <h1 className={styles.title}>
-          Log in to Pinterest
+          {isSignup
+            ? "Create a Pinterest account"
+            : "Log in to Pinterest"}
         </h1>
 
         <button className={styles.googleBtn}>
           <span className={styles.googleIcon}>G</span>
-          Continue with Google
+
+          {isSignup
+            ? "Continue with Google"
+            : "Continue with Google"}
         </button>
 
         <div className={styles.or}>OR</div>
+
+        {/* Signup Fields */}
+
+        {isSignup && (
+          <input
+            type="text"
+            placeholder="Full Name"
+            className={styles.input}
+          />
+        )}
 
         <input
           type="email"
@@ -41,7 +65,18 @@ export default function AuthPage() {
           className={styles.input}
         />
 
+        {isSignup && (
+          <input
+            type="text"
+            placeholder="Username"
+            className={styles.input}
+          />
+        )}
+
+        {/* Password */}
+
         <div className={styles.passwordWrapper}>
+
           <input
             type={showPassword ? "text" : "password"}
             placeholder="Password"
@@ -54,28 +89,71 @@ export default function AuthPage() {
           >
             👁
           </span>
+
         </div>
 
-        <a href="#" className={styles.forgot}>
-          Forgot your password?
-        </a>
+        {/* Confirm Password */}
+
+        {isSignup && (
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            className={styles.input}
+          />
+        )}
+
+        {/* Forgot Password */}
+
+        {!isSignup && (
+          <a href="#" className={styles.forgot}>
+            Forgot your password?
+          </a>
+        )}
+
+        {/* Terms */}
+
+        {isSignup && (
+          <label className={styles.termsCheck}>
+            <input type="checkbox" />
+            I agree to Terms & Conditions
+          </label>
+        )}
+
+        {/* Button */}
 
         <button className={styles.loginBtn}>
-          Log in
+          {isSignup ? "Create Account" : "Log in"}
         </button>
 
-        <p className={styles.info}>
-          Facebook login is no longer available
-        </p>
+        {/* Bottom Text */}
 
-        <a href="#" className={styles.update}>
-          Update login method
-        </a>
+        {!isSignup ? (
+          <>
+            <p className={styles.info}>
+              Facebook login is no longer available
+            </p>
 
-        <p className={styles.signupText}>
-          No Account?
-          <span> Sign up</span>
-        </p>
+            <a href="#" className={styles.update}>
+              Update login method
+            </a>
+
+            <p className={styles.signupText}>
+              No Account?
+
+              <span onClick={() => setIsSignup(true)}>
+                {" "}Sign up
+              </span>
+            </p>
+          </>
+        ) : (
+          <p className={styles.signupText}>
+            Already have an account?
+
+            <span onClick={() => setIsSignup(false)}>
+              {" "}Log in
+            </span>
+          </p>
+        )}
 
         <p className={styles.business}>
           Are you a business?
@@ -83,9 +161,9 @@ export default function AuthPage() {
         </p>
 
         <p className={styles.terms}>
-          By continuing, you agree to Pinterest's Terms of
-          Service and acknowledge you've read our Privacy
-          Policy.
+          By continuing, you agree to Pinterest's Terms
+          of Service and acknowledge you've read our
+          Privacy Policy.
         </p>
 
       </div>
