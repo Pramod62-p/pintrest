@@ -124,6 +124,7 @@
 
 .googleIcon {
   font-size: 24px;
+  font-weight: bold;
 }
 
 .or {
@@ -152,22 +153,36 @@
   color: #808080;
 }
 
+/* Password */
+
 .passwordWrapper {
   position: relative;
 }
 
+.passwordWrapper .input {
+  padding-right: 58px;
+}
+
 .eye {
   position: absolute;
-  right: 20px;
-  top: 22px;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
   cursor: pointer;
-  font-size: 24px;
+  font-size: 22px;
   color: #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  line-height: 1;
+  user-select: none;
 }
 
 .forgot {
   display: block;
-  margin-top: 5px;
+  margin-top: 6px;
   margin-bottom: 28px;
   color: #b10025;
   font-weight: 500;
@@ -294,7 +309,7 @@
   }
 
   .eye {
-    top: 18px;
-    font-size: 22px;
+    font-size: 20px;
+    right: 18px;
   }
 }
