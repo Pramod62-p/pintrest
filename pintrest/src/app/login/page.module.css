@@ -22,11 +22,27 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Hide Old Pinterest Navbar Classes */
+
+.navbar,
+.logoSection,
+.signupBtn,
+.googleBtn,
+.googleIcon,
+.or,
+.info,
+.update,
+.business,
+.terms,
+.termsCheck {
+  display: none;
+}
+
 /* Card */
 
 .loginBox {
   width: 100%;
-  max-width: 430px;
+  max-width: 400px;
 
   background: #ffffff;
 
@@ -35,16 +51,6 @@
   border-radius: 24px;
 
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-}
-
-/* Navbar Hidden */
-
-.navbar {
-  display: none;
-}
-
-.logoSection {
-  display: none;
 }
 
 /* Logo */
@@ -56,6 +62,9 @@
   background: #2563eb;
   color: #ffffff;
 
+  font-size: 28px;
+  font-weight: bold;
+
   border-radius: 18px;
 
   display: flex;
@@ -63,15 +72,6 @@
   justify-content: center;
 
   margin: 0 auto 20px;
-
-  font-size: 28px;
-  font-weight: bold;
-}
-
-/* Signup Button */
-
-.signupBtn {
-  display: none;
 }
 
 /* Title */
@@ -87,73 +87,45 @@
   margin-bottom: 8px;
 }
 
-/* Google Button */
+/* Subtitle */
 
-.googleBtn {
-  width: 100%;
-  height: 60px;
-
-  border: 1px solid #cccccc;
-  border-radius: 14px;
-
-  background: #ffffff;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-
-  font-size: 16px;
-  font-weight: 500;
-
-  cursor: pointer;
-
-  transition: 0.3s;
-}
-
-.googleBtn:hover {
-  background: #f8fafc;
-}
-
-.googleIcon {
-  color: #2563eb;
-
-  font-size: 22px;
-  font-weight: 700;
-}
-
-/* OR */
-
-.or {
+.subtitle {
   text-align: center;
-
-  margin: 24px 0;
 
   color: #64748b;
 
-  font-size: 15px;
-  font-weight: 600;
+  margin-bottom: 30px;
+
+  font-size: 14px;
+}
+
+/* Form */
+
+.form {
+  width: 100%;
+}
+
+/* Input Group */
+
+.inputGroup {
+  position: relative;
+
+  margin-bottom: 20px;
 }
 
 /* Inputs */
 
 .input {
   width: 100%;
-  height: 56px;
+
+  padding: 15px;
 
   border: 1px solid #cbd5e1;
   border-radius: 14px;
 
-  background: #ffffff;
-
-  padding: 0 16px;
-
   font-size: 15px;
-  color: #0f172a;
 
   outline: none;
-
-  margin-bottom: 18px;
 
   transition: 0.3s;
 }
@@ -164,74 +136,77 @@
   box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
 }
 
-/* Password */
+/* Password Button */
 
 .passwordWrapper {
   position: relative;
 }
 
-.eyeBtn {
+.eyeBtn,
+.show {
   position: absolute;
 
   top: 50%;
-  right: 16px;
+  right: 15px;
 
   transform: translateY(-50%);
 
-  border: none;
-  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
 
   color: #2563eb;
 
-  font-size: 14px;
-  font-weight: 600;
+  background: transparent;
+  border: none;
 
   cursor: pointer;
 }
 
-/* Forgot Password */
+/* Row */
 
-.forgot {
-  display: inline-block;
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   margin-bottom: 24px;
 
-  text-decoration: none;
-
-  color: #2563eb;
-
   font-size: 14px;
-  font-weight: 600;
 }
 
+/* Remember */
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  color: #334155;
+}
+
+/* Links */
+
+.link,
+.forgot {
+  color: #2563eb;
+
+  text-decoration: none;
+
+  font-size: 14px;
+}
+
+.link:hover,
 .forgot:hover {
   text-decoration: underline;
 }
 
-/* Terms */
+/* Button */
 
-.termsCheck {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  margin-bottom: 24px;
-
-  color: #334155;
-
-  font-size: 14px;
-}
-
-.termsCheck input {
-  width: 16px;
-  height: 16px;
-}
-
-/* Login Button */
-
+.button,
 .loginBtn {
   width: 100%;
-  height: 56px;
+
+  padding: 15px;
 
   border: none;
   border-radius: 14px;
@@ -247,45 +222,16 @@
   transition: 0.3s;
 }
 
+.button:hover,
 .loginBtn:hover {
   background: #1d4ed8;
 
   transform: translateY(-2px);
 }
 
-/* Info */
+/* Footer */
 
-.info {
-  text-align: center;
-
-  margin-top: 24px;
-
-  color: #64748b;
-
-  font-size: 14px;
-}
-
-.update {
-  display: block;
-
-  text-align: center;
-
-  margin-top: 10px;
-
-  color: #2563eb;
-
-  font-size: 14px;
-  font-weight: 600;
-
-  text-decoration: none;
-}
-
-.update:hover {
-  text-decoration: underline;
-}
-
-/* Signup Text */
-
+.footer,
 .signupText {
   text-align: center;
 
@@ -296,49 +242,13 @@
   font-size: 14px;
 }
 
+.footer span,
 .signupText span {
   color: #2563eb;
 
   font-weight: 600;
 
   cursor: pointer;
-}
-
-.signupText span:hover {
-  text-decoration: underline;
-}
-
-/* Business */
-
-.business {
-  text-align: center;
-
-  margin-top: 20px;
-
-  color: #64748b;
-
-  font-size: 14px;
-}
-
-.business span {
-  color: #2563eb;
-
-  font-weight: 600;
-
-  cursor: pointer;
-}
-
-/* Footer Terms */
-
-.terms {
-  text-align: center;
-
-  margin-top: 24px;
-
-  color: #64748b;
-
-  font-size: 12px;
-  line-height: 1.6;
 }
 
 /* Mobile */
@@ -351,12 +261,6 @@
 
   .title {
     font-size: 28px;
-  }
-
-  .googleBtn,
-  .input,
-  .loginBtn {
-    height: 52px;
   }
 
   .input {
