@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
 }
+
 .container {
   min-height: 100vh;
   background: linear-gradient(
@@ -159,8 +160,6 @@
 
 /* Password Field */
 
-/* Password Field */
-
 .passwordWrapper {
   position: relative;
   width: 100%;
@@ -176,6 +175,7 @@
   right: 22px;
   top: 50%;
   transform: translateY(-50%);
+
   width: 26px;
   height: 26px;
 
@@ -186,21 +186,25 @@
   font-size: 24px;
   color: #7d7d7d;
   cursor: pointer;
+  user-select: none;
 }
 
 /* Forgot Password */
 
-.forgot {
-  display: block;
+.forgotBtn {
+  background: transparent;
+  border: none;
+  padding: 0;
   margin-top: 14px;
   margin-bottom: 28px;
   font-size: 16px;
   font-weight: 500;
   color: #e60023;
-  text-decoration: none;
+  cursor: pointer;
+  text-align: left;
 }
 
-.forgot:hover {
+.forgotBtn:hover {
   text-decoration: underline;
 }
 
@@ -235,13 +239,9 @@
   color: #111;
 }
 
-.updateWrapper {
-  text-align: center;
-}
-
-.update {
-  display: inline-block;
-  margin-top: 12px;
+.updateBtn {
+  display: block;
+  margin: 12px auto 0;
   padding: 8px 16px;
   border: 1px solid #9f9f9f;
   border-radius: 7px;
@@ -249,6 +249,7 @@
   font-size: 14px;
   text-decoration: none;
   background: #f8f8f8;
+  cursor: pointer;
 }
 
 /* Signup */
@@ -266,12 +267,18 @@
   cursor: pointer;
 }
 
-.business {
+/* Business */
+
+.businessBtn {
+  display: block;
+  margin: 12px auto 0;
+  background: transparent;
+  border: none;
   text-align: center;
-  margin-top: 12px;
   font-size: 16px;
   color: #e60023;
   font-weight: 600;
+  cursor: pointer;
 }
 
 /* Terms */
