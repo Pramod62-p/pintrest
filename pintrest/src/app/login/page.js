@@ -166,9 +166,7 @@ export default function AuthPage() {
           />
         )}
 
-        {/* Password */}
-
-        {/* Password */}
+{/* Password */}
 
 <div className={styles.passwordWrapper}>
 
@@ -181,13 +179,13 @@ export default function AuthPage() {
     onChange={handleChange}
   />
 
-<button
-  type="button"
-  className={styles.eyeBtn}
-  onClick={() => setShowPassword(!showPassword)}
->
-  👁
-</button>
+  <button
+    type="button"
+    className={styles.eyeBtn}
+    onClick={() => setShowPassword(!showPassword)}
+  >
+    {showPassword ? "🙈" : "👁"}
+  </button>
 
 </div>
 
