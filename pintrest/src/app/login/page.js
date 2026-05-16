@@ -181,12 +181,13 @@ export default function AuthPage() {
     onChange={handleChange}
   />
 
-  <span
-    className={styles.eye}
-    onClick={() => setShowPassword(!showPassword)}
-  >
-    👁
-  </span>
+<button
+  type="button"
+  className={styles.eyeBtn}
+  onClick={() => setShowPassword(!showPassword)}
+>
+  👁
+</button>
 
 </div>
 
