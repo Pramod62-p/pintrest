@@ -168,26 +168,27 @@ export default function AuthPage() {
 
         {/* Password */}
 
-        <div className={styles.passwordWrapper}>
+        {/* Password */}
 
-          <input
-            type={showPassword ? "text" : "password"}
-            name="password"
-            placeholder="Password"
-            className={styles.input}
-            value={formData.password}
-            onChange={handleChange}
-          />
+<div className={styles.passwordWrapper}>
 
-          <button
-            type="button"
-            className={styles.eyeBtn}
-            onClick={() => setShowPassword(!showPassword)}
-          >
-            {showPassword ? "🙈" : "👁"}
-          </button>
+  <input
+    type={showPassword ? "text" : "password"}
+    name="password"
+    placeholder="Password"
+    className={styles.input}
+    value={formData.password}
+    onChange={handleChange}
+  />
 
-        </div>
+  <span
+    className={styles.eye}
+    onClick={() => setShowPassword(!showPassword)}
+  >
+    👁
+  </span>
+
+</div>
 
         {/* Confirm Password */}
 
