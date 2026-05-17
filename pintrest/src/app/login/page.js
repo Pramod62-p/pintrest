@@ -9,6 +9,7 @@ export default function PinterestAuth() {
 
   return (
     <div className={styles.container}>
+
       {/* Navbar */}
 
       <div className={styles.navbar}>
@@ -28,7 +29,9 @@ export default function PinterestAuth() {
       {/* Main Card */}
 
       <div className={styles.card}>
-        <h1>{isSignup ? "Sign up to Pinterest" : "Log in to Pinterest"}</h1>
+        <h1>
+          {isSignup ? "Sign up to Pinterest" : "Log in to Pinterest"}
+        </h1>
 
         {/* Google Button */}
 
@@ -39,7 +42,7 @@ export default function PinterestAuth() {
 
         <div className={styles.or}>OR</div>
 
-        {/* Signup Fields */}
+        {/* Signup Input */}
 
         {isSignup && (
           <input
@@ -83,7 +86,9 @@ export default function PinterestAuth() {
         )}
 
         {!isSignup && (
-          <p className={styles.forgot}>Forgot your password?</p>
+          <p className={styles.forgot}>
+            Forgot your password?
+          </p>
         )}
 
         {/* Button */}
@@ -91,8 +96,6 @@ export default function PinterestAuth() {
         <button className={styles.loginBtn}>
           {isSignup ? "Sign up" : "Log in"}
         </button>
-
-        {/* Bottom Text */}
 
         {!isSignup && (
           <>
@@ -107,7 +110,9 @@ export default function PinterestAuth() {
         )}
 
         <p className={styles.switchText}>
-          {isSignup ? "Already have an account?" : "No Account?"}
+          {isSignup
+            ? "Already have an account?"
+            : "No Account?"}
 
           <span onClick={() => setIsSignup(!isSignup)}>
             {isSignup ? " Log in" : " Sign up"}
@@ -119,8 +124,9 @@ export default function PinterestAuth() {
         </p>
 
         <p className={styles.terms}>
-          By continuing, you agree to Pinterest's Terms of Service and
-          acknowledge you've read our Privacy Policy.
+          By continuing, you agree to Pinterest's Terms
+          of Service and acknowledge you've read our
+          Privacy Policy.
         </p>
       </div>
     </div>
