@@ -206,7 +206,7 @@ onClick={() => setShowPassword(!showPassword)}
     {!isSignup && (  
       <button  
         type="button"  
-        className={styles.forgotBtn}  
+        className={styles.forgot}  
         onClick={handleForgotPassword}  
       >  
         Forgot your password?  
@@ -243,7 +243,7 @@ onClick={() => setShowPassword(!showPassword)}
 
         <button  
           type="button"  
-          className={styles.updateBtn}  
+          className={styles.update}  
           onClick={handleUpdateMethod}  
         >  
           Update login method  
@@ -272,7 +272,7 @@ onClick={() => setShowPassword(!showPassword)}
 
     <button  
       type="button"  
-      className={styles.businessBtn}  
+      className={styles.business}  
       onClick={handleBusiness}  
     >  
       Are you a business?  
