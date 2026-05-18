@@ -461,3 +461,354 @@
   transform: translateX(-50%) translateY(0);
   opacity: 1;
 }
+/* ══════════════════════════════════════════
+   HOME PAGE
+══════════════════════════════════════════ */
+
+.homeContainer {
+  min-height: 100vh;
+  background: #ffffff;
+  font-family: var(--font);
+}
+
+/* ───────── NAVBAR ───────── */
+
+.homeNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 18px;
+  z-index: 1000;
+  border-bottom: 1px solid #ececec;
+}
+
+.homeNavLogo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 26px;
+  font-weight: bold;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.navBtn {
+  height: 48px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.navBtn:hover {
+  background: #efefef;
+}
+
+.navBtnActive {
+  background: #111;
+  color: #fff;
+}
+
+/* ───────── SEARCH ───────── */
+
+.searchWrap {
+  flex: 1;
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #767676;
+  z-index: 2;
+}
+
+.searchInput {
+  width: 100%;
+  height: 48px;
+  border: none;
+  outline: none;
+  border-radius: 999px;
+  background: #efefef;
+  padding: 0 18px 0 50px;
+  font-size: 16px;
+  transition: 0.2s;
+}
+
+.searchInput:focus {
+  background: #e2e2e2;
+}
+
+/* ───────── RIGHT ICONS ───────── */
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.iconBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.iconBtn:hover {
+  background: #efefef;
+}
+
+.userAvatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+/* ───────── CATEGORY BAR ───────── */
+
+.categories {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 14px 16px;
+  background: white;
+  z-index: 999;
+  scrollbar-width: none;
+  border-bottom: 1px solid #ececec;
+}
+
+.categories::-webkit-scrollbar {
+  display: none;
+}
+
+.pill {
+  border: none;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: #efefef;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.pill:hover {
+  background: #dddddd;
+}
+
+.pillActive {
+  background: #111;
+  color: white;
+}
+
+/* ───────── FEED ───────── */
+
+.homeMain {
+  padding-top: 155px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-bottom: 30px;
+}
+
+/* ───────── PINTEREST MASONRY ───────── */
+
+.masonry {
+  column-count: 5;
+  column-gap: 16px;
+}
+
+@media (max-width: 1200px) {
+  .masonry {
+    column-count: 4;
+  }
+}
+
+@media (max-width: 900px) {
+  .masonry {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 650px) {
+  .masonry {
+    column-count: 2;
+  }
+}
+
+.pinCard {
+  break-inside: avoid;
+  margin-bottom: 16px;
+  position: relative;
+  cursor: zoom-in;
+}
+
+.pinImgWrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+}
+
+.pinImg {
+  width: 100%;
+  display: block;
+  border-radius: 22px;
+  transition: transform 0.35s ease;
+}
+
+.pinCard:hover .pinImg {
+  transform: scale(1.03);
+}
+
+/* ───────── OVERLAY ───────── */
+
+.pinOverlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  background: rgba(0,0,0,0.2);
+  opacity: 0;
+  transition: 0.25s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+}
+
+.pinCard:hover .pinOverlay {
+  opacity: 1;
+}
+
+/* ───────── SAVE BUTTON ───────── */
+
+.saveBtn {
+  align-self: flex-end;
+  border: none;
+  background: var(--red);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.saveBtn:hover {
+  background: var(--red-hover);
+}
+
+/* ───────── ACTION BUTTONS ───────── */
+
+.pinActionsBottom {
+  display: flex;
+  gap: 8px;
+}
+
+.pinActionBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* ───────── META ───────── */
+
+.pinMeta {
+  padding: 10px 4px 0;
+}
+
+.pinTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 4px;
+}
+
+.pinSource {
+  font-size: 13px;
+  color: #767676;
+}
+
+.pinAuthor {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.authorAvatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.authorName {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ───────── MOBILE ───────── */
+
+@media (max-width: 600px) {
+
+  .homeNav {
+    gap: 8px;
+    padding: 0 10px;
+  }
+
+  .navBtn {
+    display: none;
+  }
+
+  .searchInput {
+    font-size: 14px;
+  }
+
+  .homeMain {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .pinImgWrap {
+    border-radius: 18px;
+  }
+
+  .pinImg {
+    border-radius: 18px;
+  }
+}
