@@ -2,47 +2,33 @@
    GLOBAL RESET & VARIABLES
 ══════════════════════════════════════════ */
 
-:global(*) {
+:global(*),
+:global(*::before),
+:global(*::after) {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-:global(html) {
-  scroll-behavior: smooth;
-}
-
-:global(body) {
-  background: #ffffff;
-  overflow-x: hidden;
 }
 
 :global(:root) {
   --red: #e60023;
   --red-hover: #ad081b;
-  --white: #ffffff;
+  --red-light: rgba(230, 0, 35, 0.08);
+  --white: #fff;
   --bg: #f6f3f3;
   --gray-bg: #efefef;
-  --gray-border: #dcdcdc;
+  --gray-border: #cdcdcd;
   --gray-text: #767676;
-  --text: #111111;
-
+  --text: #111;
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.12);
-  --shadow-red: 0 8px 22px rgba(230, 0, 35, 0.22);
-
-  --font:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Helvetica,
-    Arial,
-    sans-serif;
-
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --shadow-red: 0 8px 24px rgba(230, 0, 35, 0.28);
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --nav-h: 64px;
   --radius: 16px;
   --radius-lg: 24px;
-  --radius-pill: 999px;
+  --radius-pill: 40px;
 }
 
 /* ══════════════════════════════════════════
@@ -51,34 +37,27 @@
 
 .container {
   min-height: 100vh;
-  width: 100%;
   background: var(--bg);
   font-family: var(--font);
   color: var(--text);
-
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* ───────── NAVBAR ───────── */
+/* ── Navbar ── */
 
 .navbar {
   width: 100%;
-  height: 74px;
-
   display: flex;
-  align-items: center;
   justify-content: space-between;
-
-  padding: 0 24px;
-
+  align-items: center;
+  padding: 12px 20px;
   background: var(--white);
-  border-bottom: 1px solid #ececec;
-
+  box-shadow: 0 1px 0 var(--gray-border);
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 50;
 }
 
 .logoArea {
@@ -88,24 +67,19 @@
 }
 
 .logo {
-  width: 42px;
-  height: 42px;
-
-  border-radius: 50%;
-
+  width: 40px;
+  height: 40px;
   background: var(--red);
-  color: white;
-
+  color: var(--white);
+  border-radius: 50%;
   display: flex;
-  align-items: center;
   justify-content: center;
-
-  font-size: 24px;
+  align-items: center;
+  font-size: 22px;
   font-weight: 800;
   font-family: Georgia, serif;
-
+  transition: background 0.18s;
   cursor: pointer;
-  transition: 0.2s;
 }
 
 .logo:hover {
@@ -114,53 +88,45 @@
 
 .logoArea h2 {
   color: var(--red);
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
 }
 
 .topButton {
-  border: 2px solid var(--red);
   background: transparent;
+  border: 2px solid var(--red);
   color: var(--red);
-
-  height: 44px;
-  padding: 0 22px;
-
+  padding: 8px 22px;
   border-radius: var(--radius-pill);
-
   font-size: 15px;
-  font-weight: 700;
-
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.2s;
+  transition: background 0.18s, color 0.18s;
 }
 
 .topButton:hover {
   background: var(--red);
-  color: white;
+  color: var(--white);
 }
 
-/* ───────── CARD ───────── */
+/* ── Card ── */
 
 .card {
   width: 100%;
   max-width: 460px;
-
-  background: white;
-  border-radius: var(--radius-lg);
-
-  margin: 42px 16px;
-  padding: 38px 32px;
-
+  margin: 36px 16px 40px;
+  text-align: center;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 40px 32px 36px;
   box-shadow: var(--shadow-md);
-
-  animation: fadeUp 0.4s ease;
+  animation: slideUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-@keyframes fadeUp {
+@keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(28px);
   }
 
   to {
@@ -170,68 +136,53 @@
 }
 
 .card h1 {
-  text-align: center;
-
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 800;
-
   margin-bottom: 28px;
-
-  letter-spacing: -0.5px;
+  color: var(--text);
+  letter-spacing: -0.4px;
 }
 
-/* ───────── GOOGLE BUTTON ───────── */
+/* ── Google Button ── */
 
 .googleBtn {
   width: 100%;
-  height: 54px;
-
-  border-radius: var(--radius-pill);
+  height: 52px;
   border: 1.5px solid var(--gray-border);
-
-  background: white;
-
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-
-  font-size: 15px;
-  font-weight: 700;
-  font-family: var(--font);
-
+  box-shadow: var(--shadow-sm);
   cursor: pointer;
-  transition: 0.2s;
+  transition: background 0.15s, box-shadow 0.15s;
+  font-family: var(--font);
 }
 
 .googleBtn:hover {
-  background: #f7f7f7;
-  box-shadow: var(--shadow-sm);
-}
-
-.googleBtn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
+  background: var(--gray-bg);
+  box-shadow: var(--shadow-md);
 }
 
 .googleIcon {
   display: flex;
   align-items: center;
-  justify-content: center;
+  flex-shrink: 0;
 }
 
-/* ───────── OR ───────── */
-
 .or {
-  margin: 22px 0;
-
+  margin: 20px 0;
+  font-size: 14px;
+  color: var(--gray-text);
+  font-weight: 700;
   display: flex;
   align-items: center;
-  gap: 14px;
-
-  color: var(--gray-text);
-  font-size: 13px;
-  font-weight: 700;
+  gap: 12px;
 }
 
 .or::before,
@@ -239,82 +190,69 @@
   content: "";
   flex: 1;
   height: 1px;
-  background: #dddddd;
+  background: var(--gray-border);
 }
 
-/* ───────── INPUTS ───────── */
+/* ── Inputs ── */
 
 .input {
   width: 100%;
-  height: 54px;
-
-  border-radius: var(--radius);
+  height: 52px;
   border: 1.5px solid var(--gray-border);
-
-  background: white;
-
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--text);
   padding: 0 18px;
-
   font-size: 15px;
   font-family: var(--font);
-
-  outline: none;
-
   margin-bottom: 14px;
-
-  transition: 0.18s;
+  outline: none;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  display: block;
 }
 
 .input:focus {
-  border-color: #111;
-  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.06);
+  border-color: var(--text);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.07);
 }
 
 .input::placeholder {
   color: var(--gray-text);
 }
 
-.inputError {
-  border-color: var(--red) !important;
+.input.inputError {
+  border-color: var(--red);
 }
-
-/* ───────── PASSWORD ───────── */
 
 .passwordBox {
   width: 100%;
-  height: 54px;
-
-  border-radius: var(--radius);
+  height: 52px;
   border: 1.5px solid var(--gray-border);
-
-  background: white;
-
+  border-radius: var(--radius);
+  background: var(--white);
   display: flex;
   align-items: center;
-
-  padding: 0 16px;
-
+  padding: 0 14px 0 18px;
   margin-bottom: 8px;
-
-  transition: 0.18s;
+  transition: border-color 0.18s, box-shadow 0.18s;
 }
 
 .passwordBox:focus-within {
-  border-color: #111;
-  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.06);
+  border-color: var(--text);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.07);
+}
+
+.passwordBox.inputError {
+  border-color: var(--red);
 }
 
 .passwordInput {
   flex: 1;
-
   border: none;
   outline: none;
-
-  background: transparent;
-
   font-size: 15px;
   font-family: var(--font);
-
+  background: transparent;
   color: var(--text);
 }
 
@@ -323,58 +261,45 @@
 }
 
 .eye {
-  width: 34px;
-  height: 34px;
-
+  background: none;
   border: none;
-  background: transparent;
-
+  cursor: pointer;
+  color: var(--gray-text);
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  color: var(--gray-text);
-
-  cursor: pointer;
-  border-radius: 50%;
-
-  transition: 0.18s;
+  padding: 4px;
+  transition: color 0.15s;
 }
 
 .eye:hover {
-  background: #f3f3f3;
-  color: #111;
+  color: var(--text);
 }
 
-/* ───────── ERRORS ───────── */
+/* Error messages */
 
 .fieldError {
-  display: block;
-
-  margin: -6px 0 12px 4px;
-
   color: var(--red);
-
   font-size: 12px;
-  font-weight: 600;
+  text-align: left;
+  margin: -8px 0 10px 4px;
+  display: block;
 }
 
-/* ───────── FORGOT ───────── */
+/* ── Forgot ── */
 
 .forgot {
-  background: transparent;
-  border: none;
-
+  text-align: left;
   color: var(--red);
-
   font-size: 13px;
-  font-weight: 700;
-
-  cursor: pointer;
-
+  font-weight: 600;
   margin: 4px 0 20px 4px;
-
-  transition: 0.18s;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font);
+  transition: opacity 0.15s;
+  display: block;
 }
 
 .forgot:hover {
@@ -382,39 +307,34 @@
   text-decoration: underline;
 }
 
-/* ───────── LOGIN BUTTON ───────── */
+/* ── Login / Signup Button ── */
 
 .loginBtn {
   width: 100%;
-  height: 54px;
-
+  height: 52px;
   border: none;
   border-radius: var(--radius-pill);
-
   background: var(--red);
-  color: white;
-
+  color: var(--white);
   font-size: 16px;
   font-weight: 700;
   font-family: var(--font);
-
+  cursor: pointer;
+  box-shadow: var(--shadow-red);
+  transition: background 0.18s, transform 0.12s, box-shadow 0.18s;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  cursor: pointer;
-
-  transition: 0.18s;
-
-  box-shadow: var(--shadow-red);
+  gap: 8px;
 }
 
 .loginBtn:hover {
   background: var(--red-hover);
+  box-shadow: 0 10px 28px rgba(230, 0, 35, 0.38);
 }
 
 .loginBtn:active {
-  transform: scale(0.985);
+  transform: scale(0.98);
 }
 
 .loginBtn:disabled {
@@ -422,18 +342,15 @@
   cursor: not-allowed;
 }
 
-/* ───────── SPINNER ───────── */
+/* Loading spinner */
 
 .spinner {
   width: 18px;
   height: 18px;
-
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
   border-radius: 50%;
-
-  border: 2px solid rgba(255,255,255,0.4);
-  border-top-color: white;
-
-  animation: spin 0.7s linear infinite;
+  animation: spin 0.6s linear infinite;
 }
 
 @keyframes spin {
@@ -442,56 +359,47 @@
   }
 }
 
-/* ───────── EXTRA BUTTONS ───────── */
+/* ── Facebook / Update ── */
 
 .facebook {
   margin-top: 24px;
-
-  text-align: center;
-
   font-size: 13px;
   color: var(--gray-text);
 }
 
 .updateBtn {
-  width: 100%;
-  height: 50px;
-
-  margin-top: 12px;
-
-  border-radius: var(--radius);
+  margin-top: 10px;
   border: 1.5px solid var(--gray-border);
-
-  background: white;
-
+  background: var(--white);
+  color: var(--gray-text);
+  padding: 10px 20px;
+  border-radius: var(--radius);
   font-size: 14px;
-  font-weight: 700;
-
+  font-weight: 600;
+  font-family: var(--font);
   cursor: pointer;
-
-  transition: 0.18s;
+  width: 100%;
+  transition: border-color 0.15s, color 0.15s;
 }
 
 .updateBtn:hover {
-  border-color: #111;
+  border-color: var(--text);
+  color: var(--text);
 }
 
-/* ───────── LINKS ───────── */
+/* ── Bottom links ── */
 
 .switchText {
   margin-top: 28px;
-
-  text-align: center;
-
-  color: var(--gray-text);
   font-size: 14px;
+  color: var(--gray-text);
 }
 
 .switchText span {
   color: var(--red);
   font-weight: 700;
-
   cursor: pointer;
+  margin-left: 4px;
 }
 
 .switchText span:hover {
@@ -499,17 +407,15 @@
 }
 
 .business {
-  margin-top: 12px;
-
-  background: transparent;
-  border: none;
-
   color: var(--red);
-
+  margin-top: 12px;
   font-size: 13px;
-  font-weight: 700;
-
+  font-weight: 600;
   cursor: pointer;
+  background: none;
+  border: none;
+  font-family: var(--font);
+  padding: 0;
 }
 
 .business:hover {
@@ -517,138 +423,96 @@
 }
 
 .terms {
-  margin-top: 24px;
-
-  text-align: center;
-
+  margin-top: 28px;
   color: var(--gray-text);
-
   font-size: 12px;
   line-height: 1.7;
 }
 
 .terms a {
   color: var(--gray-text);
+  text-decoration: underline;
 }
 
-/* ══════════════════════════════════════════
-   TOAST
-══════════════════════════════════════════ */
+/* ── Toast ── */
 
 .toast {
   position: fixed;
+  bottom: 32px;
   left: 50%;
-  bottom: 28px;
-
   transform: translateX(-50%) translateY(80px);
-
-  background: #111;
-  color: white;
-
-  padding: 12px 24px;
-
-  border-radius: 999px;
-
+  background: var(--text);
+  color: var(--white);
+  padding: 12px 28px;
+  border-radius: 24px;
   font-size: 14px;
-  font-weight: 700;
-
+  font-weight: 600;
+  z-index: 999;
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s;
   opacity: 0;
-
-  transition: 0.28s;
-
-  z-index: 99999;
+  white-space: nowrap;
+  font-family: var(--font);
+  pointer-events: none;
 }
 
-.toastShow {
-  opacity: 1;
+.toast.toastShow {
   transform: translateX(-50%) translateY(0);
+  opacity: 1;
 }
-
 /* ══════════════════════════════════════════
    HOME PAGE
 ══════════════════════════════════════════ */
 
 .homeContainer {
-  width: 100%;
   min-height: 100vh;
-  background: white;
+  background: #ffffff;
   font-family: var(--font);
 }
 
-/* ───────── WELCOME BANNER ───────── */
-
-.welcomeBanner {
-  width: 100%;
-  background: #fff0f2;
-  color: var(--red);
-
-  text-align: center;
-
-  padding: 10px 16px;
-
-  font-size: 14px;
-  font-weight: 700;
-
-  margin-top: 80px;
-}
-
-/* ───────── HOME NAV ───────── */
+/* ───────── NAVBAR ───────── */
 
 .homeNav {
   position: fixed;
   top: 0;
   left: 0;
-
   width: 100%;
   height: 80px;
-
-  background: white;
-
+  background: #fff;
   display: flex;
   align-items: center;
   gap: 12px;
-
-  padding: 0 16px;
-
-  border-bottom: 1px solid #ececec;
-
+  padding: 0 18px;
   z-index: 1000;
+  border-bottom: 1px solid #ececec;
 }
 
 .homeNavLogo {
   width: 48px;
   height: 48px;
-
   border-radius: 50%;
-  border: none;
-
   background: var(--red);
-
   display: flex;
   align-items: center;
   justify-content: center;
-
+  color: white;
+  font-size: 26px;
+  font-weight: bold;
   cursor: pointer;
-
   flex-shrink: 0;
 }
 
 .navBtn {
   height: 48px;
-
+  padding: 0 18px;
   border-radius: 999px;
   border: none;
-
-  padding: 0 18px;
-
   background: transparent;
-
   font-size: 15px;
   font-weight: 700;
-
   cursor: pointer;
-
-  transition: 0.18s;
+  transition: 0.2s;
 }
 
 .navBtn:hover {
@@ -657,7 +521,7 @@
 
 .navBtnActive {
   background: #111;
-  color: white;
+  color: #fff;
 }
 
 /* ───────── SEARCH ───────── */
@@ -669,37 +533,27 @@
 
 .searchIcon {
   position: absolute;
-  top: 50%;
   left: 18px;
-
+  top: 50%;
   transform: translateY(-50%);
-
   color: #767676;
-
-  display: flex;
-  align-items: center;
+  z-index: 2;
 }
 
 .searchInput {
   width: 100%;
   height: 48px;
-
   border: none;
   outline: none;
-
   border-radius: 999px;
-
   background: #efefef;
-
   padding: 0 18px 0 50px;
-
-  font-size: 15px;
-
-  transition: 0.18s;
+  font-size: 16px;
+  transition: 0.2s;
 }
 
 .searchInput:focus {
-  background: #e3e3e3;
+  background: #e2e2e2;
 }
 
 /* ───────── RIGHT ICONS ───────── */
@@ -713,136 +567,42 @@
 .iconBtn {
   width: 44px;
   height: 44px;
-
   border-radius: 50%;
   border: none;
-
   background: transparent;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
-
-  position: relative;
-
-  transition: 0.18s;
+  transition: 0.2s;
 }
 
 .iconBtn:hover {
   background: #efefef;
 }
 
-.notifDot {
-  width: 10px;
-  height: 10px;
-
-  border-radius: 50%;
-
-  background: var(--red);
-
-  position: absolute;
-  top: 8px;
-  right: 8px;
-}
-
 .userAvatar {
-  width: 40px;
-  height: 40px;
-
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-
   object-fit: cover;
-
   cursor: pointer;
 }
 
-/* ───────── DROPDOWN ───────── */
-
-.dropdownWrap {
-  position: relative;
-}
-
-.dropdown {
-  position: absolute;
-  top: 52px;
-  right: 0;
-
-  width: 220px;
-
-  background: white;
-
-  border-radius: 18px;
-
-  padding: 8px;
-
-  box-shadow: 0 12px 30px rgba(0,0,0,0.14);
-
-  animation: fadeDrop 0.2s ease;
-}
-
-@keyframes fadeDrop {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.dropItem {
-  width: 100%;
-
-  border: none;
-  background: transparent;
-
-  text-align: left;
-
-  padding: 12px 14px;
-
-  border-radius: 12px;
-
-  font-size: 14px;
-  font-weight: 600;
-
-  cursor: pointer;
-
-  transition: 0.16s;
-}
-
-.dropItem:hover {
-  background: #f5f5f5;
-}
-
-.dropItemDanger {
-  color: var(--red);
-}
-
-/* ───────── CATEGORIES ───────── */
+/* ───────── CATEGORY BAR ───────── */
 
 .categories {
-  position: sticky;
+  position: fixed;
   top: 80px;
-
+  left: 0;
   width: 100%;
-
   display: flex;
   gap: 10px;
-
   overflow-x: auto;
-
   padding: 14px 16px;
-
   background: white;
-
-  z-index: 900;
-
+  z-index: 999;
   scrollbar-width: none;
-
   border-bottom: 1px solid #ececec;
 }
 
@@ -852,20 +612,14 @@
 
 .pill {
   border: none;
-  border-radius: 999px;
-
-  background: #efefef;
-
   padding: 10px 18px;
-
-  white-space: nowrap;
-
+  border-radius: 999px;
+  background: #efefef;
   font-size: 14px;
-  font-weight: 700;
-
+  font-weight: 600;
+  white-space: nowrap;
   cursor: pointer;
-
-  transition: 0.18s;
+  transition: 0.2s;
 }
 
 .pill:hover {
@@ -877,13 +631,16 @@
   color: white;
 }
 
-/* ───────── MAIN ───────── */
+/* ───────── FEED ───────── */
 
 .homeMain {
-  padding: 18px 12px 30px;
+  padding-top: 155px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-bottom: 30px;
 }
 
-/* ───────── MASONRY ───────── */
+/* ───────── PINTEREST MASONRY ───────── */
 
 .masonry {
   column-count: 5;
@@ -911,41 +668,21 @@
 .pinCard {
   break-inside: avoid;
   margin-bottom: 16px;
-
+  position: relative;
   cursor: zoom-in;
-
-  animation: fadePin 0.4s ease both;
-}
-
-@keyframes fadePin {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .pinImgWrap {
   position: relative;
-
   overflow: hidden;
-
   border-radius: 22px;
 }
 
 .pinImg {
   width: 100%;
   display: block;
-
   border-radius: 22px;
-
-  object-fit: cover;
-
-  transition: transform 0.3s ease;
+  transition: transform 0.35s ease;
 }
 
 .pinCard:hover .pinImg {
@@ -957,19 +694,13 @@
 .pinOverlay {
   position: absolute;
   inset: 0;
-
   border-radius: 22px;
-
-  background: rgba(0,0,0,0.24);
-
+  background: rgba(0,0,0,0.2);
   opacity: 0;
-
-  transition: 0.22s;
-
+  transition: 0.25s;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   padding: 12px;
 }
 
@@ -981,32 +712,21 @@
 
 .saveBtn {
   align-self: flex-end;
-
   border: none;
-  border-radius: 999px;
-
   background: var(--red);
   color: white;
-
   padding: 12px 18px;
-
+  border-radius: 999px;
   font-size: 14px;
   font-weight: 700;
-
   cursor: pointer;
-
-  transition: 0.18s;
 }
 
 .saveBtn:hover {
   background: var(--red-hover);
 }
 
-.saveBtnSaved {
-  background: #111;
-}
-
-/* ───────── PIN ACTIONS ───────── */
+/* ───────── ACTION BUTTONS ───────── */
 
 .pinActionsBottom {
   display: flex;
@@ -1016,23 +736,13 @@
 .pinActionBtn {
   width: 36px;
   height: 36px;
-
   border-radius: 50%;
   border: none;
-
-  background: rgba(255,255,255,0.96);
-
+  background: rgba(255,255,255,0.95);
   display: flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
-
-  transition: 0.18s;
-}
-
-.pinActionBtn:hover {
-  transform: scale(1.06);
 }
 
 /* ───────── META ───────── */
@@ -1044,9 +754,7 @@
 .pinTitle {
   font-size: 15px;
   font-weight: 700;
-
   color: #111;
-
   margin-bottom: 4px;
 }
 
@@ -1059,16 +767,13 @@
   display: flex;
   align-items: center;
   gap: 8px;
-
   margin-top: 8px;
 }
 
 .authorAvatar {
   width: 28px;
   height: 28px;
-
   border-radius: 50%;
-
   object-fit: cover;
 }
 
@@ -1077,15 +782,9 @@
   font-weight: 600;
 }
 
-/* ══════════════════════════════════════════
-   MOBILE
-══════════════════════════════════════════ */
+/* ───────── MOBILE ───────── */
 
-@media (max-width: 768px) {
-
-  .card {
-    padding: 34px 22px;
-  }
+@media (max-width: 600px) {
 
   .homeNav {
     gap: 8px;
@@ -1100,62 +799,16 @@
     font-size: 14px;
   }
 
-  .categories {
-    padding: 12px 10px;
-  }
-
   .homeMain {
     padding-left: 8px;
     padding-right: 8px;
   }
-}
 
-@media (max-width: 480px) {
-
-  .card {
-    margin: 20px 10px;
-    padding: 28px 18px;
-    border-radius: 20px;
-  }
-
-  .card h1 {
-    font-size: 24px;
-  }
-
-  .navbar {
-    padding: 0 14px;
-  }
-
-  .logoArea h2 {
-    font-size: 19px;
-  }
-
-  .topButton {
-    height: 40px;
-    padding: 0 18px;
-    font-size: 14px;
-  }
-
-  .masonry {
-    column-gap: 10px;
-  }
-
-  .pinCard {
-    margin-bottom: 10px;
-  }
-
-  .pinImgWrap,
-  .pinImg,
-  .pinOverlay {
+  .pinImgWrap {
     border-radius: 18px;
   }
 
-  .searchInput {
-    height: 44px;
-  }
-
-  .iconBtn {
-    width: 40px;
-    height: 40px;
+  .pinImg {
+    border-radius: 18px;
   }
 }
