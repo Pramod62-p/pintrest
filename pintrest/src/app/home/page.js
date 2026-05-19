@@ -16,19 +16,6 @@ const SearchIcon = () => (
   </svg>
 );
 
-const BellIcon = () => (
-  <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth={2.2} viewBox="0 0 24 24">
-    <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-    <path d="M13.73 21a2 2 0 01-3.46 0"/>
-  </svg>
-);
-
-const ChatIcon = () => (
-  <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth={2.2} viewBox="0 0 24 24">
-    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
-  </svg>
-);
-
 const PlusIcon = () => (
   <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth={2.2} viewBox="0 0 24 24">
     <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>
@@ -76,9 +63,17 @@ const CATEGORIES = [
 ];
 
 const INITIAL_PINS = [
-  { id: 1, img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80", h: 280, title: "Mountain Sunrise", src: "travelblog.com", author: "Aria K.", av: "https://i.pravatar.cc/40?img=1" },
-  // ... (all other pins from original code)
-  // I kept them short here for brevity - copy all from your original file
+  { id: 1,  img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80", h: 280, title: "Mountain Sunrise",   src: "travelblog.com",   author: "Aria K.",   av: "https://i.pravatar.cc/40?img=1" },
+  { id: 2,  img: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&q=80", h: 200, title: "Modern Living Room",  src: "homedecor.co",     author: "Marcus L.", av: "https://i.pravatar.cc/40?img=2" },
+  { id: 3,  img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80", h: 320, title: "Gourmet Pizza",      src: "foodie.net",       author: "Sofia M.",  av: "https://i.pravatar.cc/40?img=3" },
+  { id: 4,  img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&q=80", h: 240, title: "Street Fashion",     src: "vogue.com",        author: "Jenna T.",  av: "https://i.pravatar.cc/40?img=4" },
+  { id: 5,  img: "https://images.unsplash.com/photo-1490750967868-88df5691cc14?w=400&q=80", h: 300, title: "Spring Flowers",     src: "nature.io",        author: "Lena B.",   av: "https://i.pravatar.cc/40?img=5" },
+  { id: 6,  img: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=400&q=80", h: 220, title: "Architecture",       src: "archdaily.com",    author: "Omar P.",   av: "https://i.pravatar.cc/40?img=6" },
+  { id: 7,  img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80", h: 260, title: "Healthy Bowl",       src: "eatwell.co",       author: "Claire N.", av: "https://i.pravatar.cc/40?img=7" },
+  { id: 8,  img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&q=80", h: 340, title: "Yoga Sunrise",       src: "wellness.app",     author: "Zoe R.",    av: "https://i.pravatar.cc/40?img=8" },
+  { id: 9,  img: "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?w=400&q=80", h: 230, title: "Minimal Desk",       src: "desky.io",         author: "Ryan W.",   av: "https://i.pravatar.cc/40?img=9" },
+  { id: 10, img: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&q=80", h: 270, title: "Autumn Forest",      src: "hikingpal.com",    author: "Nina C.",   av: "https://i.pravatar.cc/40?img=10" },
+  // Add more pins if needed...
 ];
 
 function PinCard({ pin, delay, showToast }) {
@@ -87,11 +82,21 @@ function PinCard({ pin, delay, showToast }) {
   return (
     <div className={styles.pinCard} style={{ animationDelay: `${delay}ms` }}>
       <div className={styles.pinImgWrap}>
-        <img className={styles.pinImg} src={pin.img} alt={pin.title} style={{ height: pin.h }} loading="lazy" />
+        <img
+          className={styles.pinImg}
+          src={pin.img}
+          alt={pin.title}
+          style={{ height: pin.h }}
+          loading="lazy"
+        />
         <div className={styles.pinOverlay}>
           <button
             className={styles.saveBtn}
-            onClick={(e) => { e.stopPropagation(); setSaved(true); showToast(`"${pin.title}" saved!`); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              setSaved(true);
+              showToast(`"${pin.title}" saved to board!`);
+            }}
           >
             {saved ? "Saved ✓" : "Save"}
           </button>
@@ -124,7 +129,6 @@ export default function PinterestHome() {
   const [activeCategory, setActiveCategory] = useState(0);
   const [pins, setPins] = useState(INITIAL_PINS);
   const [dropOpen, setDropOpen] = useState(false);
-  const [showNotifDot, setShowNotifDot] = useState(true);
   const [activeNav, setActiveNav] = useState("Home");
   const loadingRef = useRef(false);
   const dropRef = useRef(null);
@@ -138,7 +142,10 @@ export default function PinterestHome() {
         loadingRef.current = true;
         showToast("Loading more pins…");
         setTimeout(() => {
-          setPins(prev => [...prev, ...INITIAL_PINS.slice(0, 8).map(p => ({ ...p, id: Date.now() + Math.random() }))]);
+          setPins(prev => [
+            ...prev,
+            ...INITIAL_PINS.slice(0, 8).map(p => ({ ...p, id: Date.now() + Math.random() }))
+          ]);
           loadingRef.current = false;
         }, 800);
       }
@@ -147,7 +154,7 @@ export default function PinterestHome() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [showToast]);
 
-  // Close dropdown
+  // Close dropdown on outside click
   useEffect(() => {
     const handler = (e) => {
       if (dropRef.current && !dropRef.current.contains(e.target)) setDropOpen(false);
@@ -196,15 +203,7 @@ export default function PinterestHome() {
             <PlusIcon />
           </button>
 
-          <button className={styles.iconBtn} onClick={() => { setShowNotifDot(false); showToast("No new notifications"); }}>
-            <BellIcon />
-            {showNotifDot && <span className={styles.notifDot} />}
-          </button>
-
-          <button className={styles.iconBtn} onClick={() => showToast("Messages — coming soon!")}>
-            <ChatIcon />
-          </button>
-
+          {/* Avatar + Dropdown */}
           <div className={styles.dropdownWrap} ref={dropRef}>
             <img
               className={styles.userAvatar}
@@ -226,7 +225,7 @@ export default function PinterestHome() {
                     className={`${styles.dropItem} ${danger ? styles.dropItemDanger : ""}`}
                     onClick={() => {
                       setDropOpen(false);
-                      if (danger) showToast("Logged out");
+                      if (danger) showToast("Logged out successfully");
                       else showToast(label);
                     }}
                   >
@@ -239,7 +238,7 @@ export default function PinterestHome() {
         </div>
       </nav>
 
-      {/* Categories */}
+      {/* Category Pills */}
       <div className={styles.categories}>
         {CATEGORIES.map((cat, i) => (
           <button
