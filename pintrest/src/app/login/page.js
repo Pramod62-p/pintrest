@@ -41,18 +41,32 @@ function useToast() {
 
   const showToast = useCallback((msg) => {
     clearTimeout(timer.current);
-    setToast({ msg, show: true });
-    timer.current = setTimeout(() => setToast(t => ({ ...t, show: false })), 2300);
+
+    setToast({
+      msg,
+      show: true,
+    });
+
+    timer.current = setTimeout(() => {
+      setToast((t) => ({
+        ...t,
+        show: false,
+      }));
+    }, 2300);
   }, []);
 
   return { toast, showToast };
 }
 
 // Validation
-const validateEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
-const validatePassword = (p) => p.length >= 6;
+const validateEmail = (e) =>
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+
+const validatePassword = (p) =>
+  p.length >= 6;
 
 export default function PinterestAuth() {
+
   const [isSignup, setIsSignup] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -68,8 +82,10 @@ export default function PinterestAuth() {
 
   const { toast, showToast } = useToast();
 
+  // Switch Login / Signup
   const switchMode = () => {
-    setIsSignup(s => !s);
+    setIsSignup((s) => !s);
+
     setErrors({});
     setName("");
     setEmail("");
@@ -78,172 +94,415 @@ export default function PinterestAuth() {
     setShowPassword(false);
   };
 
+  // Validation
   function validate() {
+
     const errs = {};
-    if (isSignup && !name.trim()) errs.name = "Name is required.";
-    if (!validateEmail(email)) errs.email = "Enter a valid email address.";
-    if (!validatePassword(password)) errs.password = "Password must be at least 6 characters.";
-    if (isSignup && password !== confirmPassword) errs.confirmPassword = "Passwords do not match.";
+
+    if (isSignup && !name.trim()) {
+      errs.name = "Name is required.";
+    }
+
+    if (!validateEmail(email)) {
+      errs.email = "Enter a valid email address.";
+    }
+
+    if (!validatePassword(password)) {
+      errs.password = "Password must be at least 6 characters.";
+    }
+
+    if (isSignup && password !== confirmPassword) {
+      errs.confirmPassword = "Passwords do not match.";
+    }
+
     return errs;
   }
 
+  // Submit
   function handleSubmit() {
+
     const errs = validate();
+
     if (Object.keys(errs).length) {
       setErrors(errs);
       return;
     }
+
     setErrors({});
     setLoading(true);
 
     setTimeout(() => {
+
       setLoading(false);
-      showToast(isSignup ? "Account created successfully!" : "Logged in successfully!");
-      // You can redirect or set loggedIn state here
+
+      showToast(
+        isSignup
+          ? "Account created successfully!"
+          : "Logged in successfully!"
+      );
+
     }, 1600);
   }
 
+  // Google Popup Login
   function handleGoogleLogin() {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      showToast("Logged in with Google!");
-    }, 1200);
-  }
 
-  function handleForgotPassword() {
-    if (!validateEmail(email)) {
-      setErrors(e => ({ ...e, email: "Enter your email first." }));
+    const googlePopup = window.open(
+      "https://accounts.google.com/",
+      "Google Login",
+      "width=500,height=650,left=500,top=100"
+    );
+
+    if (!googlePopup) {
+      showToast("Popup blocked! Please allow popups.");
       return;
     }
+
+    showToast("Google login popup opened!");
+  }
+
+  // Forgot Password
+  function handleForgotPassword() {
+
+    if (!validateEmail(email)) {
+
+      setErrors((e) => ({
+        ...e,
+        email: "Enter your email first.",
+      }));
+
+      return;
+    }
+
     showToast(`Password reset link sent to ${email}`);
   }
 
   return (
+
     <div className={styles.container}>
+
       {/* Navbar */}
+
       <div className={styles.navbar}>
+
         <div className={styles.logoArea}>
-          <div className={styles.logo}>P</div>
+
+          <div className={styles.logo}>
+            P
+          </div>
+
           <h2>Pinterest</h2>
+
         </div>
-        <button className={styles.topButton} onClick={switchMode}>
+
+        <button
+          className={styles.topButton}
+          onClick={switchMode}
+          type="button"
+        >
           {isSignup ? "Log in" : "Sign up"}
         </button>
+
       </div>
 
       {/* Auth Card */}
+
       <div className={styles.card}>
-        <h1>{isSignup ? "Sign up to Pinterest" : "Log in to Pinterest"}</h1>
+
+        <h1>
+          {isSignup
+            ? "Sign up to Pinterest"
+            : "Log in to Pinterest"}
+        </h1>
 
         {/* Google Login */}
-        <button className={styles.googleBtn} onClick={handleGoogleLogin} disabled={loading}>
-          <span className={styles.googleIcon}><GoogleSVG /></span>
+
+        <button
+          className={styles.googleBtn}
+          onClick={handleGoogleLogin}
+          disabled={loading}
+          type="button"
+        >
+
+          <span className={styles.googleIcon}>
+            <GoogleSVG />
+          </span>
+
           Continue with Google
+
         </button>
 
-        <div className={styles.or}>OR</div>
+        <div className={styles.or}>
+          OR
+        </div>
 
-        {/* Name (Signup only) */}
+        {/* Name */}
+
         {isSignup && (
           <>
+
             <input
               type="text"
               placeholder="Full name"
-              className={`${styles.input} ${errors.name ? styles.inputError : ""}`}
+              className={`${styles.input} ${
+                errors.name ? styles.inputError : ""
+              }`}
               value={name}
-              onChange={(e) => { setName(e.target.value); setErrors(er => ({ ...er, name: "" })); }}
+              onChange={(e) => {
+                setName(e.target.value);
+
+                setErrors((er) => ({
+                  ...er,
+                  name: "",
+                }));
+              }}
             />
-            {errors.name && <span className={styles.fieldError}>{errors.name}</span>}
+
+            {errors.name && (
+              <span className={styles.fieldError}>
+                {errors.name}
+              </span>
+            )}
+
           </>
         )}
 
         {/* Email */}
+
         <input
           type="email"
           placeholder="Email"
-          className={`${styles.input} ${errors.email ? styles.inputError : ""}`}
+          className={`${styles.input} ${
+            errors.email ? styles.inputError : ""
+          }`}
           value={email}
-          onChange={(e) => { setEmail(e.target.value); setErrors(er => ({ ...er, email: "" })); }}
-          onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+          onChange={(e) => {
+
+            setEmail(e.target.value);
+
+            setErrors((er) => ({
+              ...er,
+              email: "",
+            }));
+          }}
+          onKeyDown={(e) =>
+            e.key === "Enter" && handleSubmit()
+          }
         />
-        {errors.email && <span className={styles.fieldError}>{errors.email}</span>}
+
+        {errors.email && (
+          <span className={styles.fieldError}>
+            {errors.email}
+          </span>
+        )}
 
         {/* Password */}
-        <div className={`${styles.passwordBox} ${errors.password ? styles.inputError : ""}`}>
+
+        <div
+          className={`${styles.passwordBox} ${
+            errors.password ? styles.inputError : ""
+          }`}
+        >
+
           <input
             type={showPassword ? "text" : "password"}
             placeholder="Password"
             className={styles.passwordInput}
             value={password}
-            onChange={(e) => { setPassword(e.target.value); setErrors(er => ({ ...er, password: "" })); }}
-            onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+            onChange={(e) => {
+
+              setPassword(e.target.value);
+
+              setErrors((er) => ({
+                ...er,
+                password: "",
+              }));
+            }}
+            onKeyDown={(e) =>
+              e.key === "Enter" && handleSubmit()
+            }
           />
-          <button className={styles.eye} onClick={() => setShowPassword(s => !s)} type="button">
+
+          <button
+            className={styles.eye}
+            onClick={() => setShowPassword((s) => !s)}
+            type="button"
+          >
             {showPassword ? <EyeClosed /> : <EyeOpen />}
           </button>
-        </div>
-        {errors.password && <span className={styles.fieldError}>{errors.password}</span>}
 
-        {/* Confirm Password (Signup only) */}
+        </div>
+
+        {errors.password && (
+          <span className={styles.fieldError}>
+            {errors.password}
+          </span>
+        )}
+
+        {/* Confirm Password */}
+
         {isSignup && (
           <>
+
             <input
               type="password"
               placeholder="Confirm Password"
-              className={`${styles.input} ${errors.confirmPassword ? styles.inputError : ""}`}
+              className={`${styles.input} ${
+                errors.confirmPassword
+                  ? styles.inputError
+                  : ""
+              }`}
               value={confirmPassword}
-              onChange={(e) => { setConfirmPassword(e.target.value); setErrors(er => ({ ...er, confirmPassword: "" })); }}
-              onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+              onChange={(e) => {
+
+                setConfirmPassword(e.target.value);
+
+                setErrors((er) => ({
+                  ...er,
+                  confirmPassword: "",
+                }));
+              }}
+              onKeyDown={(e) =>
+                e.key === "Enter" && handleSubmit()
+              }
             />
-            {errors.confirmPassword && <span className={styles.fieldError}>{errors.confirmPassword}</span>}
+
+            {errors.confirmPassword && (
+              <span className={styles.fieldError}>
+                {errors.confirmPassword}
+              </span>
+            )}
+
           </>
         )}
 
         {/* Forgot Password */}
+
         {!isSignup && (
-          <button className={styles.forgot} onClick={handleForgotPassword}>
+          <button
+            className={styles.forgot}
+            onClick={handleForgotPassword}
+            type="button"
+          >
             Forgot your password?
           </button>
         )}
 
         {/* Submit Button */}
-        <button className={styles.loginBtn} onClick={handleSubmit} disabled={loading}>
-          {loading ? <span className={styles.spinner} /> : (isSignup ? "Sign up" : "Log in")}
+
+        <button
+          className={styles.loginBtn}
+          onClick={handleSubmit}
+          disabled={loading}
+          type="button"
+        >
+
+          {loading ? (
+            <span className={styles.spinner} />
+          ) : (
+            isSignup ? "Sign up" : "Log in"
+          )}
+
         </button>
 
         {/* Extra Options */}
+
         {!isSignup && (
           <>
-            <p className={styles.facebook}>Facebook login is no longer available</p>
-            <button className={styles.updateBtn} onClick={() => showToast("Please use email or Google to log in.")}>
+
+            <p className={styles.facebook}>
+              Facebook login is no longer available
+            </p>
+
+            <button
+              className={styles.updateBtn}
+              onClick={() =>
+                showToast(
+                  "Please use email or Google to log in."
+                )
+              }
+              type="button"
+            >
               Update login method
             </button>
+
           </>
         )}
 
         {/* Switch Mode */}
+
         <p className={styles.switchText}>
-          {isSignup ? "Already have an account?" : "No Account?"}
-          <span onClick={switchMode}>{isSignup ? " Log in" : " Sign up"}</span>
+
+          {isSignup
+            ? "Already have an account?"
+            : "No Account?"}
+
+          <span onClick={switchMode}>
+            {isSignup
+              ? " Log in"
+              : " Sign up"}
+          </span>
+
         </p>
 
-        <button className={styles.business} onClick={() => showToast("Business signup — coming soon!")}>
+        {/* Business */}
+
+        <button
+          className={styles.business}
+          onClick={() =>
+            showToast(
+              "Business signup — coming soon!"
+            )
+          }
+          type="button"
+        >
           Are you a business? Get started here!
         </button>
 
+        {/* Terms */}
+
         <p className={styles.terms}>
+
           By continuing, you agree to Pinterest's{" "}
-          <a href="#" onClick={(e) => { e.preventDefault(); showToast("Terms of Service"); }}>Terms of Service</a>{" "}
+
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              showToast("Terms of Service");
+            }}
+          >
+            Terms of Service
+          </a>{" "}
+
           and acknowledge you've read our{" "}
-          <a href="#" onClick={(e) => { e.preventDefault(); showToast("Privacy Policy"); }}>Privacy Policy</a>.
+
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              showToast("Privacy Policy");
+            }}
+          >
+            Privacy Policy
+          </a>
+
+          .
+
         </p>
+
       </div>
 
-      {/* Toast Notification */}
-      <div className={`${styles.toast} ${toast.show ? styles.toastShow : ""}`}>
+      {/* Toast */}
+
+      <div
+        className={`${styles.toast} ${
+          toast.show ? styles.toastShow : ""
+        }`}
+      >
         {toast.msg}
       </div>
+
     </div>
   );
 }
