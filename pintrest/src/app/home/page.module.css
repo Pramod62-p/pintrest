@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════
-   HOME PAGE STYLES (Standalone)
+   HOME PAGE STYLES - Clean Version
 ══════════════════════════════════════════ */
 
 .homeContainer {
@@ -103,7 +103,7 @@
 .navRight {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
 }
 
 .iconBtn {
@@ -122,16 +122,6 @@
 
 .iconBtn:hover {
   background: #efefef;
-}
-
-.notifDot {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 10px;
-  height: 10px;
-  background: #e60023;
-  border-radius: 50%;
 }
 
 /* ───────── DROPDOWN ───────── */
@@ -289,7 +279,6 @@
   transform: scale(1.03);
 }
 
-/* Overlay */
 .pinOverlay {
   position: absolute;
   inset: 0;
