@@ -424,9 +424,7 @@ export default function PinterestAuth() {
           event.data.type === "google-success"
         ) {
 
-          showToast(
-            \`Logged in with \${event.data.email}\`
-          );
+          showToast(`Logged in with ${event.data.email}`);
         }
       },
       { once: true }
@@ -446,7 +444,7 @@ export default function PinterestAuth() {
       return;
     }
 
-    showToast(\`Password reset link sent to \${email}\`);
+    showToast(`Password reset link sent to ${email}`);
   }
 
   return (
