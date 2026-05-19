@@ -201,7 +201,7 @@ export default function PinterestAuth() {
 
         <head>
 
-          <title>Google Sign In</title>
+          <title>Choose an account</title>
 
           <style>
 
@@ -222,10 +222,10 @@ export default function PinterestAuth() {
 
             .box{
               width:90%;
-              max-width:360px;
+              max-width:380px;
               background:white;
               border-radius:18px;
-              padding:32px;
+              padding:28px;
               box-shadow:0 4px 20px rgba(0,0,0,0.12);
             }
 
@@ -244,7 +244,7 @@ export default function PinterestAuth() {
             }
 
             h2{
-              font-size:25px;
+              font-size:24px;
               color:#202124;
               margin-bottom:10px;
             }
@@ -252,43 +252,47 @@ export default function PinterestAuth() {
             p{
               font-size:14px;
               color:#5f6368;
-              margin-bottom:22px;
+              margin-bottom:24px;
             }
 
-            input{
-              width:100%;
+            .account{
+              display:flex;
+              align-items:center;
+              gap:14px;
               padding:14px;
-              border:1px solid #dadce0;
-              border-radius:10px;
-              outline:none;
-              margin-bottom:16px;
-              font-size:15px;
-            }
-
-            input:focus{
-              border:2px solid #1a73e8;
-            }
-
-            button{
-              width:100%;
-              padding:14px;
-              border:none;
-              border-radius:10px;
-              background:#1a73e8;
-              color:white;
-              font-size:15px;
+              border-radius:14px;
               cursor:pointer;
+              transition:0.2s;
+              border:1px solid #dadce0;
+              margin-bottom:12px;
             }
 
-            button:hover{
-              background:#1765cc;
+            .account:hover{
+              background:#f8f9fa;
             }
 
-            .error{
-              color:red;
+            .avatar{
+              width:42px;
+              height:42px;
+              border-radius:50%;
+              background:#e60023;
+              color:white;
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              font-weight:bold;
+              font-size:18px;
+            }
+
+            .details h4{
+              color:#202124;
+              font-size:15px;
+              margin-bottom:3px;
+            }
+
+            .details span{
+              color:#5f6368;
               font-size:13px;
-              margin-bottom:14px;
-              display:none;
             }
 
             .success{
@@ -307,39 +311,67 @@ export default function PinterestAuth() {
 
         <body>
 
-          <div class="box" id="loginBox">
+          <div class="box" id="accountBox">
 
             <div class="logo">
               G
             </div>
 
             <h2>
-              Sign in
+              Choose an account
             </h2>
 
             <p>
-              Use your Google Account
+              to continue to Pinterest
             </p>
 
-            <div class="error" id="error">
-              Enter valid email and password
+            <div
+              class="account"
+              onclick="selectAccount('alex@gmail.com')"
+            >
+
+              <div class="avatar">
+                A
+              </div>
+
+              <div class="details">
+                <h4>Alex Johnson</h4>
+                <span>alex@gmail.com</span>
+              </div>
+
             </div>
 
-            <input
-              type="email"
-              id="popupEmail"
-              placeholder="Email or phone"
-            />
+            <div
+              class="account"
+              onclick="selectAccount('emma@gmail.com')"
+            >
 
-            <input
-              type="password"
-              id="popupPassword"
-              placeholder="Enter your password"
-            />
+              <div class="avatar">
+                E
+              </div>
 
-            <button onclick="login()">
-              Next
-            </button>
+              <div class="details">
+                <h4>Emma Watson</h4>
+                <span>emma@gmail.com</span>
+              </div>
+
+            </div>
+
+            <div
+              class="account"
+              onclick="selectAccount('michael@gmail.com')"
+            >
+
+              <div class="avatar">
+                M
+              </div>
+
+              <div class="details">
+                <h4>Michael Lee</h4>
+                <span>michael@gmail.com</span>
+              </div>
+
+            </div>
 
           </div>
 
@@ -357,32 +389,9 @@ export default function PinterestAuth() {
 
           <script>
 
-            function validateEmail(email){
-              return /^[^\\\\s@]+@[^\\\\s@]+\\\\.[^\\\\s@]+$/.test(email);
-            }
+            function selectAccount(email){
 
-            function login(){
-
-              const email =
-                document.getElementById("popupEmail").value;
-
-              const password =
-                document.getElementById("popupPassword").value;
-
-              const error =
-                document.getElementById("error");
-
-              if(
-                !validateEmail(email) ||
-                password.length < 6
-              ){
-                error.style.display = "block";
-                return;
-              }
-
-              error.style.display = "none";
-
-              document.getElementById("loginBox").style.display = "none";
+              document.getElementById("accountBox").style.display = "none";
 
               document.getElementById("successBox").style.display = "block";
 
@@ -416,7 +425,7 @@ export default function PinterestAuth() {
         ) {
 
           showToast(
-            "Logged in successfully with Google!"
+            \`Logged in with \${event.data.email}\`
           );
         }
       },
@@ -437,7 +446,7 @@ export default function PinterestAuth() {
       return;
     }
 
-    showToast(`Password reset link sent to ${email}`);
+    showToast(\`Password reset link sent to \${email}\`);
   }
 
   return (
@@ -480,7 +489,7 @@ export default function PinterestAuth() {
             : "Log in to Pinterest"}
         </h1>
 
-        {/* Google Button */}
+        {/* Google Login */}
 
         <button
           className={styles.googleBtn}
@@ -677,24 +686,6 @@ export default function PinterestAuth() {
             : "Log in"}
 
         </button>
-
-        {/* Switch */}
-
-        <p className={styles.switchText}>
-
-          {isSignup
-            ? "Already have an account?"
-            : "No Account?"}
-
-          <span onClick={switchMode}>
-
-            {isSignup
-              ? " Log in"
-              : " Sign up"}
-
-          </span>
-
-        </p>
 
       </div>
 
