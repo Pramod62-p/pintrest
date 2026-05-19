@@ -3,34 +3,61 @@
 import { useState, useRef, useCallback } from "react";
 import styles from "./page.module.css";
 
-// Icons
+// Google Icon
 const GoogleSVG = () => (
   <svg width="20" height="20" viewBox="0 0 24 24">
-    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/>
-    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+    <path
+      fill="#4285F4"
+      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+    />
+    <path
+      fill="#34A853"
+      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+    />
+    <path
+      fill="#FBBC05"
+      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"
+    />
+    <path
+      fill="#EA4335"
+      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+    />
   </svg>
 );
 
+// Eye Open
 const EyeOpen = () => (
-  <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-    <circle cx="12" cy="12" r="3"/>
+  <svg
+    width="20"
+    height="20"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2}
+    viewBox="0 0 24 24"
+  >
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+    <circle cx="12" cy="12" r="3" />
   </svg>
 );
 
+// Eye Closed
 const EyeClosed = () => (
-  <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-    <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/>
-    <path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/>
-    <line x1="1" y1="1" x2="23" y2="23"/>
+  <svg
+    width="20"
+    height="20"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2}
+    viewBox="0 0 24 24"
+  >
+    <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94" />
+    <path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19" />
+    <line x1="1" y1="1" x2="23" y2="23" />
   </svg>
 );
 
 // Toast Hook
 function useToast() {
-
   const [toast, setToast] = useState({
     msg: "",
     show: false,
@@ -39,7 +66,6 @@ function useToast() {
   const timer = useRef(null);
 
   const showToast = useCallback((msg) => {
-
     clearTimeout(timer.current);
 
     setToast({
@@ -53,7 +79,6 @@ function useToast() {
         show: false,
       }));
     }, 2300);
-
   }, []);
 
   return { toast, showToast };
@@ -76,14 +101,15 @@ export default function PinterestAuth() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] =
+    useState("");
 
   // Errors
   const [errors, setErrors] = useState({});
 
   const { toast, showToast } = useToast();
 
-  // Switch Mode
+  // Switch Login / Signup
   const switchMode = () => {
 
     setIsSignup((s) => !s);
@@ -96,7 +122,7 @@ export default function PinterestAuth() {
     setShowPassword(false);
   };
 
-  // Validate
+  // Validation
   function validate() {
 
     const errs = {};
@@ -167,7 +193,9 @@ export default function PinterestAuth() {
 
     popup.document.write(`
       <html>
+
         <head>
+
           <title>Google Sign In</title>
 
           <style>
@@ -192,47 +220,34 @@ export default function PinterestAuth() {
               max-width:360px;
               background:white;
               border-radius:18px;
-              padding:30px;
-              box-shadow:0 4px 20px rgba(0,0,0,0.1);
+              padding:32px;
+              box-shadow:0 4px 20px rgba(0,0,0,0.12);
             }
 
             .logo{
-              width:40px;
-              height:40px;
+              width:42px;
+              height:42px;
               border-radius:50%;
               background:#4285F4;
               color:white;
               display:flex;
               align-items:center;
               justify-content:center;
-              font-size:20px;
+              font-size:22px;
               font-weight:bold;
               margin-bottom:20px;
             }
 
             h2{
-              font-size:24px;
-              margin-bottom:10px;
+              font-size:25px;
               color:#202124;
+              margin-bottom:10px;
             }
 
             p{
-              color:#5f6368;
-              margin-bottom:20px;
               font-size:14px;
-            }
-
-            .account{
-              padding:12px;
-              border:1px solid #dadce0;
-              border-radius:12px;
-              margin-bottom:14px;
-              cursor:pointer;
-              transition:0.2s;
-            }
-
-            .account:hover{
-              background:#f8f9fa;
+              color:#5f6368;
+              margin-bottom:22px;
             }
 
             input{
@@ -245,13 +260,17 @@ export default function PinterestAuth() {
               font-size:15px;
             }
 
+            input:focus{
+              border:2px solid #1a73e8;
+            }
+
             button{
               width:100%;
               padding:14px;
               border:none;
+              border-radius:10px;
               background:#1a73e8;
               color:white;
-              border-radius:10px;
               font-size:15px;
               cursor:pointer;
             }
@@ -260,72 +279,125 @@ export default function PinterestAuth() {
               background:#1765cc;
             }
 
+            .error{
+              color:red;
+              font-size:13px;
+              margin-bottom:14px;
+              display:none;
+            }
+
+            .success{
+              text-align:center;
+              display:none;
+            }
+
+            .success h3{
+              color:#188038;
+              margin-bottom:12px;
+            }
+
           </style>
+
         </head>
 
         <body>
 
-          <div class="box">
+          <div class="box" id="loginBox">
 
-            <div class="logo">G</div>
-
-            <h2>Sign in</h2>
-
-            <p>Choose an account to continue</p>
-
-            <div class="account" onclick="showPassword()">
-              demoaccount@gmail.com
+            <div class="logo">
+              G
             </div>
 
-            <div class="account" onclick="showPassword()">
-              pinterestuser@gmail.com
+            <h2>
+              Sign in
+            </h2>
+
+            <p>
+              Use your Google Account
+            </p>
+
+            <div class="error" id="error">
+              Enter valid email and password
             </div>
 
-            <div id="passwordArea" style="display:none;">
+            <input
+              type="email"
+              id="email"
+              placeholder="Email or phone"
+            />
 
-              <input
-                type="password"
-                id="password"
-                placeholder="Enter your password"
-              />
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+            />
 
-              <button onclick="login()">
-                Next
-              </button>
+            <button onclick="login()">
+              Next
+            </button>
 
-            </div>
+          </div>
+
+          <div class="box success" id="successBox">
+
+            <h3>
+              Login Successful
+            </h3>
+
+            <p>
+              Redirecting to Pinterest...
+            </p>
 
           </div>
 
           <script>
 
-            function showPassword(){
-              document.getElementById("passwordArea").style.display = "block";
+            function validateEmail(email){
+              return /^[^\\\\s@]+@[^\\\\s@]+\\\\.[^\\\\s@]+$/.test(email);
             }
 
             function login(){
 
+              const email =
+                document.getElementById("email").value;
+
               const password =
                 document.getElementById("password").value;
 
-              if(password.length < 6){
-                alert("Enter valid password");
+              const error =
+                document.getElementById("error");
+
+              if(
+                !validateEmail(email) ||
+                password.length < 6
+              ){
+                error.style.display = "block";
                 return;
               }
 
+              error.style.display = "none";
+
+              document.getElementById("loginBox").style.display = "none";
+
+              document.getElementById("successBox").style.display = "block";
+
               window.opener.postMessage(
                 {
-                  type:"google-success"
+                  type:"google-success",
+                  email:email
                 },
                 "*"
               );
 
-              window.close();
+              setTimeout(() => {
+                window.close();
+              }, 1800);
             }
 
           </script>
 
         </body>
+
       </html>
     `);
 
@@ -338,8 +410,9 @@ export default function PinterestAuth() {
           event.data.type === "google-success"
         ) {
 
-          showToast("Google login successful!");
-
+          showToast(
+            "Logged in successfully with Google!"
+          );
         }
       },
       { once: true }
@@ -360,7 +433,7 @@ export default function PinterestAuth() {
     }
 
     showToast(
-      `Password reset link sent to ${email}`
+      \`Password reset link sent to \${email}\`
     );
   }
 
@@ -378,7 +451,9 @@ export default function PinterestAuth() {
             P
           </div>
 
-          <h2>Pinterest</h2>
+          <h2>
+            Pinterest
+          </h2>
 
         </div>
 
@@ -402,11 +477,12 @@ export default function PinterestAuth() {
             : "Log in to Pinterest"}
         </h1>
 
-        {/* Google Button */}
+        {/* Google Login */}
 
         <button
           className={styles.googleBtn}
           onClick={handleGoogleLogin}
+          disabled={loading}
           type="button"
         >
 
@@ -430,13 +506,14 @@ export default function PinterestAuth() {
             <input
               type="text"
               placeholder="Full name"
-              className={`${styles.input} ${
+              className={\`\${styles.input} \${
                 errors.name
                   ? styles.inputError
                   : ""
-              }`}
+              }\`}
               value={name}
               onChange={(e) => {
+
                 setName(e.target.value);
 
                 setErrors((er) => ({
@@ -460,11 +537,11 @@ export default function PinterestAuth() {
         <input
           type="email"
           placeholder="Email"
-          className={`${styles.input} ${
+          className={\`\${styles.input} \${
             errors.email
               ? styles.inputError
               : ""
-          }`}
+          }\`}
           value={email}
           onChange={(e) => {
 
@@ -486,11 +563,11 @@ export default function PinterestAuth() {
         {/* Password */}
 
         <div
-          className={`${styles.passwordBox} ${
+          className={\`\${styles.passwordBox} \${
             errors.password
               ? styles.inputError
               : ""
-          }`}
+          }\`}
         >
 
           <input
@@ -541,11 +618,11 @@ export default function PinterestAuth() {
             <input
               type="password"
               placeholder="Confirm Password"
-              className={`${styles.input} ${
+              className={\`\${styles.input} \${
                 errors.confirmPassword
                   ? styles.inputError
                   : ""
-              }`}
+              }\`}
               value={confirmPassword}
               onChange={(e) => {
 
@@ -569,7 +646,7 @@ export default function PinterestAuth() {
           </>
         )}
 
-        {/* Forgot */}
+        {/* Forgot Password */}
 
         {!isSignup && (
           <button
@@ -581,7 +658,7 @@ export default function PinterestAuth() {
           </button>
         )}
 
-        {/* Login Button */}
+        {/* Submit Button */}
 
         <button
           className={styles.loginBtn}
@@ -589,14 +666,16 @@ export default function PinterestAuth() {
           disabled={loading}
           type="button"
         >
+
           {loading
             ? "Loading..."
             : isSignup
             ? "Sign up"
             : "Log in"}
+
         </button>
 
-        {/* Switch */}
+        {/* Switch Mode */}
 
         <p className={styles.switchText}>
 
@@ -605,9 +684,11 @@ export default function PinterestAuth() {
             : "No Account?"}
 
           <span onClick={switchMode}>
+
             {isSignup
               ? " Log in"
               : " Sign up"}
+
           </span>
 
         </p>
@@ -617,11 +698,11 @@ export default function PinterestAuth() {
       {/* Toast */}
 
       <div
-        className={`${styles.toast} ${
+        className={\`\${styles.toast} \${
           toast.show
             ? styles.toastShow
             : ""
-        }`}
+        }\`}
       >
         {toast.msg}
       </div>
