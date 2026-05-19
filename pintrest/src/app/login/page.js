@@ -58,6 +58,7 @@ const EyeClosed = () => (
 
 // Toast Hook
 function useToast() {
+
   const [toast, setToast] = useState({
     msg: "",
     show: false,
@@ -66,6 +67,7 @@ function useToast() {
   const timer = useRef(null);
 
   const showToast = useCallback((msg) => {
+
     clearTimeout(timer.current);
 
     setToast({
@@ -74,11 +76,14 @@ function useToast() {
     });
 
     timer.current = setTimeout(() => {
+
       setToast((t) => ({
         ...t,
         show: false,
       }));
+
     }, 2300);
+
   }, []);
 
   return { toast, showToast };
@@ -109,7 +114,7 @@ export default function PinterestAuth() {
 
   const { toast, showToast } = useToast();
 
-  // Switch Login / Signup
+  // Switch Mode
   const switchMode = () => {
 
     setIsSignup((s) => !s);
@@ -122,7 +127,7 @@ export default function PinterestAuth() {
     setShowPassword(false);
   };
 
-  // Validation
+  // Validate Form
   function validate() {
 
     const errs = {};
@@ -177,7 +182,7 @@ export default function PinterestAuth() {
     }, 1500);
   }
 
-  // Google Login Popup
+  // Google Popup Login
   function handleGoogleLogin() {
 
     const popup = window.open(
@@ -322,13 +327,13 @@ export default function PinterestAuth() {
 
             <input
               type="email"
-              id="email"
+              id="popupEmail"
               placeholder="Email or phone"
             />
 
             <input
               type="password"
-              id="password"
+              id="popupPassword"
               placeholder="Enter your password"
             />
 
@@ -359,10 +364,10 @@ export default function PinterestAuth() {
             function login(){
 
               const email =
-                document.getElementById("email").value;
+                document.getElementById("popupEmail").value;
 
               const password =
-                document.getElementById("password").value;
+                document.getElementById("popupPassword").value;
 
               const error =
                 document.getElementById("error");
@@ -432,9 +437,7 @@ export default function PinterestAuth() {
       return;
     }
 
-    showToast(
-      \`Password reset link sent to \${email}\`
-    );
+    showToast(`Password reset link sent to ${email}`);
   }
 
   return (
@@ -477,7 +480,7 @@ export default function PinterestAuth() {
             : "Log in to Pinterest"}
         </h1>
 
-        {/* Google Login */}
+        {/* Google Button */}
 
         <button
           className={styles.googleBtn}
@@ -498,7 +501,7 @@ export default function PinterestAuth() {
           OR
         </div>
 
-        {/* Signup Name */}
+        {/* Name */}
 
         {isSignup && (
           <>
@@ -506,11 +509,11 @@ export default function PinterestAuth() {
             <input
               type="text"
               placeholder="Full name"
-              className={\`\${styles.input} \${
+              className={`${styles.input} ${
                 errors.name
                   ? styles.inputError
                   : ""
-              }\`}
+              }`}
               value={name}
               onChange={(e) => {
 
@@ -537,11 +540,11 @@ export default function PinterestAuth() {
         <input
           type="email"
           placeholder="Email"
-          className={\`\${styles.input} \${
+          className={`${styles.input} ${
             errors.email
               ? styles.inputError
               : ""
-          }\`}
+          }`}
           value={email}
           onChange={(e) => {
 
@@ -563,11 +566,11 @@ export default function PinterestAuth() {
         {/* Password */}
 
         <div
-          className={\`\${styles.passwordBox} \${
+          className={`${styles.passwordBox} ${
             errors.password
               ? styles.inputError
               : ""
-          }\`}
+          }`}
         >
 
           <input
@@ -618,11 +621,11 @@ export default function PinterestAuth() {
             <input
               type="password"
               placeholder="Confirm Password"
-              className={\`\${styles.input} \${
+              className={`${styles.input} ${
                 errors.confirmPassword
                   ? styles.inputError
                   : ""
-              }\`}
+              }`}
               value={confirmPassword}
               onChange={(e) => {
 
@@ -658,7 +661,7 @@ export default function PinterestAuth() {
           </button>
         )}
 
-        {/* Submit Button */}
+        {/* Submit */}
 
         <button
           className={styles.loginBtn}
@@ -675,7 +678,7 @@ export default function PinterestAuth() {
 
         </button>
 
-        {/* Switch Mode */}
+        {/* Switch */}
 
         <p className={styles.switchText}>
 
@@ -698,11 +701,11 @@ export default function PinterestAuth() {
       {/* Toast */}
 
       <div
-        className={\`\${styles.toast} \${
+        className={`${styles.toast} ${
           toast.show
             ? styles.toastShow
             : ""
-        }\`}
+        }`}
       >
         {toast.msg}
       </div>
