@@ -28,18 +28,18 @@ const EyeClosed = () => (
   </svg>
 );
 
-const LogoSVG = () => (
-  <svg viewBox="0 0 24 24" width="22" height="22" fill="#fff">
-    <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/>
-  </svg>
-);
-
 // Toast Hook
 function useToast() {
-  const [toast, setToast] = useState({ msg: "", show: false });
+
+  const [toast, setToast] = useState({
+    msg: "",
+    show: false,
+  });
+
   const timer = useRef(null);
 
   const showToast = useCallback((msg) => {
+
     clearTimeout(timer.current);
 
     setToast({
@@ -53,6 +53,7 @@ function useToast() {
         show: false,
       }));
     }, 2300);
+
   }, []);
 
   return { toast, showToast };
@@ -82,8 +83,9 @@ export default function PinterestAuth() {
 
   const { toast, showToast } = useToast();
 
-  // Switch Login / Signup
+  // Switch Mode
   const switchMode = () => {
+
     setIsSignup((s) => !s);
 
     setErrors({});
@@ -94,7 +96,7 @@ export default function PinterestAuth() {
     setShowPassword(false);
   };
 
-  // Validation
+  // Validate
   function validate() {
 
     const errs = {};
@@ -108,17 +110,22 @@ export default function PinterestAuth() {
     }
 
     if (!validatePassword(password)) {
-      errs.password = "Password must be at least 6 characters.";
+      errs.password =
+        "Password must be at least 6 characters.";
     }
 
-    if (isSignup && password !== confirmPassword) {
-      errs.confirmPassword = "Passwords do not match.";
+    if (
+      isSignup &&
+      password !== confirmPassword
+    ) {
+      errs.confirmPassword =
+        "Passwords do not match.";
     }
 
     return errs;
   }
 
-  // Submit
+  // Normal Login
   function handleSubmit() {
 
     const errs = validate();
@@ -141,24 +148,202 @@ export default function PinterestAuth() {
           : "Logged in successfully!"
       );
 
-    }, 1600);
+    }, 1500);
   }
 
-  // Google Popup Login
+  // Google Login Popup
   function handleGoogleLogin() {
 
-    const googlePopup = window.open(
-      "https://accounts.google.com/",
-      "Google Login",
-      "width=500,height=650,left=500,top=100"
+    const popup = window.open(
+      "",
+      "GoogleLoginPopup",
+      "width=500,height=650,left=450,top=80"
     );
 
-    if (!googlePopup) {
-      showToast("Popup blocked! Please allow popups.");
+    if (!popup) {
+      showToast("Please allow popups.");
       return;
     }
 
-    showToast("Google login popup opened!");
+    popup.document.write(`
+      <html>
+        <head>
+          <title>Google Sign In</title>
+
+          <style>
+
+            *{
+              margin:0;
+              padding:0;
+              box-sizing:border-box;
+              font-family:Arial,sans-serif;
+            }
+
+            body{
+              background:#f1f3f4;
+              display:flex;
+              justify-content:center;
+              align-items:center;
+              height:100vh;
+            }
+
+            .box{
+              width:90%;
+              max-width:360px;
+              background:white;
+              border-radius:18px;
+              padding:30px;
+              box-shadow:0 4px 20px rgba(0,0,0,0.1);
+            }
+
+            .logo{
+              width:40px;
+              height:40px;
+              border-radius:50%;
+              background:#4285F4;
+              color:white;
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              font-size:20px;
+              font-weight:bold;
+              margin-bottom:20px;
+            }
+
+            h2{
+              font-size:24px;
+              margin-bottom:10px;
+              color:#202124;
+            }
+
+            p{
+              color:#5f6368;
+              margin-bottom:20px;
+              font-size:14px;
+            }
+
+            .account{
+              padding:12px;
+              border:1px solid #dadce0;
+              border-radius:12px;
+              margin-bottom:14px;
+              cursor:pointer;
+              transition:0.2s;
+            }
+
+            .account:hover{
+              background:#f8f9fa;
+            }
+
+            input{
+              width:100%;
+              padding:14px;
+              border:1px solid #dadce0;
+              border-radius:10px;
+              outline:none;
+              margin-bottom:16px;
+              font-size:15px;
+            }
+
+            button{
+              width:100%;
+              padding:14px;
+              border:none;
+              background:#1a73e8;
+              color:white;
+              border-radius:10px;
+              font-size:15px;
+              cursor:pointer;
+            }
+
+            button:hover{
+              background:#1765cc;
+            }
+
+          </style>
+        </head>
+
+        <body>
+
+          <div class="box">
+
+            <div class="logo">G</div>
+
+            <h2>Sign in</h2>
+
+            <p>Choose an account to continue</p>
+
+            <div class="account" onclick="showPassword()">
+              demoaccount@gmail.com
+            </div>
+
+            <div class="account" onclick="showPassword()">
+              pinterestuser@gmail.com
+            </div>
+
+            <div id="passwordArea" style="display:none;">
+
+              <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+              />
+
+              <button onclick="login()">
+                Next
+              </button>
+
+            </div>
+
+          </div>
+
+          <script>
+
+            function showPassword(){
+              document.getElementById("passwordArea").style.display = "block";
+            }
+
+            function login(){
+
+              const password =
+                document.getElementById("password").value;
+
+              if(password.length < 6){
+                alert("Enter valid password");
+                return;
+              }
+
+              window.opener.postMessage(
+                {
+                  type:"google-success"
+                },
+                "*"
+              );
+
+              window.close();
+            }
+
+          </script>
+
+        </body>
+      </html>
+    `);
+
+    window.addEventListener(
+      "message",
+      (event) => {
+
+        if (
+          event.data &&
+          event.data.type === "google-success"
+        ) {
+
+          showToast("Google login successful!");
+
+        }
+      },
+      { once: true }
+    );
   }
 
   // Forgot Password
@@ -174,7 +359,9 @@ export default function PinterestAuth() {
       return;
     }
 
-    showToast(`Password reset link sent to ${email}`);
+    showToast(
+      `Password reset link sent to ${email}`
+    );
   }
 
   return (
@@ -205,7 +392,7 @@ export default function PinterestAuth() {
 
       </div>
 
-      {/* Auth Card */}
+      {/* Card */}
 
       <div className={styles.card}>
 
@@ -215,12 +402,11 @@ export default function PinterestAuth() {
             : "Log in to Pinterest"}
         </h1>
 
-        {/* Google Login */}
+        {/* Google Button */}
 
         <button
           className={styles.googleBtn}
           onClick={handleGoogleLogin}
-          disabled={loading}
           type="button"
         >
 
@@ -236,7 +422,7 @@ export default function PinterestAuth() {
           OR
         </div>
 
-        {/* Name */}
+        {/* Signup Name */}
 
         {isSignup && (
           <>
@@ -245,7 +431,9 @@ export default function PinterestAuth() {
               type="text"
               placeholder="Full name"
               className={`${styles.input} ${
-                errors.name ? styles.inputError : ""
+                errors.name
+                  ? styles.inputError
+                  : ""
               }`}
               value={name}
               onChange={(e) => {
@@ -273,7 +461,9 @@ export default function PinterestAuth() {
           type="email"
           placeholder="Email"
           className={`${styles.input} ${
-            errors.email ? styles.inputError : ""
+            errors.email
+              ? styles.inputError
+              : ""
           }`}
           value={email}
           onChange={(e) => {
@@ -285,9 +475,6 @@ export default function PinterestAuth() {
               email: "",
             }));
           }}
-          onKeyDown={(e) =>
-            e.key === "Enter" && handleSubmit()
-          }
         />
 
         {errors.email && (
@@ -300,12 +487,18 @@ export default function PinterestAuth() {
 
         <div
           className={`${styles.passwordBox} ${
-            errors.password ? styles.inputError : ""
+            errors.password
+              ? styles.inputError
+              : ""
           }`}
         >
 
           <input
-            type={showPassword ? "text" : "password"}
+            type={
+              showPassword
+                ? "text"
+                : "password"
+            }
             placeholder="Password"
             className={styles.passwordInput}
             value={password}
@@ -318,17 +511,18 @@ export default function PinterestAuth() {
                 password: "",
               }));
             }}
-            onKeyDown={(e) =>
-              e.key === "Enter" && handleSubmit()
-            }
           />
 
           <button
             className={styles.eye}
-            onClick={() => setShowPassword((s) => !s)}
             type="button"
+            onClick={() =>
+              setShowPassword((s) => !s)
+            }
           >
-            {showPassword ? <EyeClosed /> : <EyeOpen />}
+            {showPassword
+              ? <EyeClosed />
+              : <EyeOpen />}
           </button>
 
         </div>
@@ -355,16 +549,15 @@ export default function PinterestAuth() {
               value={confirmPassword}
               onChange={(e) => {
 
-                setConfirmPassword(e.target.value);
+                setConfirmPassword(
+                  e.target.value
+                );
 
                 setErrors((er) => ({
                   ...er,
                   confirmPassword: "",
                 }));
               }}
-              onKeyDown={(e) =>
-                e.key === "Enter" && handleSubmit()
-              }
             />
 
             {errors.confirmPassword && (
@@ -376,7 +569,7 @@ export default function PinterestAuth() {
           </>
         )}
 
-        {/* Forgot Password */}
+        {/* Forgot */}
 
         {!isSignup && (
           <button
@@ -388,7 +581,7 @@ export default function PinterestAuth() {
           </button>
         )}
 
-        {/* Submit Button */}
+        {/* Login Button */}
 
         <button
           className={styles.loginBtn}
@@ -396,40 +589,14 @@ export default function PinterestAuth() {
           disabled={loading}
           type="button"
         >
-
-          {loading ? (
-            <span className={styles.spinner} />
-          ) : (
-            isSignup ? "Sign up" : "Log in"
-          )}
-
+          {loading
+            ? "Loading..."
+            : isSignup
+            ? "Sign up"
+            : "Log in"}
         </button>
 
-        {/* Extra Options */}
-
-        {!isSignup && (
-          <>
-
-            <p className={styles.facebook}>
-              Facebook login is no longer available
-            </p>
-
-            <button
-              className={styles.updateBtn}
-              onClick={() =>
-                showToast(
-                  "Please use email or Google to log in."
-                )
-              }
-              type="button"
-            >
-              Update login method
-            </button>
-
-          </>
-        )}
-
-        {/* Switch Mode */}
+        {/* Switch */}
 
         <p className={styles.switchText}>
 
@@ -445,59 +612,15 @@ export default function PinterestAuth() {
 
         </p>
 
-        {/* Business */}
-
-        <button
-          className={styles.business}
-          onClick={() =>
-            showToast(
-              "Business signup — coming soon!"
-            )
-          }
-          type="button"
-        >
-          Are you a business? Get started here!
-        </button>
-
-        {/* Terms */}
-
-        <p className={styles.terms}>
-
-          By continuing, you agree to Pinterest's{" "}
-
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              showToast("Terms of Service");
-            }}
-          >
-            Terms of Service
-          </a>{" "}
-
-          and acknowledge you've read our{" "}
-
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              showToast("Privacy Policy");
-            }}
-          >
-            Privacy Policy
-          </a>
-
-          .
-
-        </p>
-
       </div>
 
       {/* Toast */}
 
       <div
         className={`${styles.toast} ${
-          toast.show ? styles.toastShow : ""
+          toast.show
+            ? styles.toastShow
+            : ""
         }`}
       >
         {toast.msg}
