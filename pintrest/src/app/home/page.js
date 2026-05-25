@@ -13,14 +13,28 @@ const LogoSVG = () => (
 );
 
 const SearchIcon = () => (
-  <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth={2.2} viewBox="0 0 24 24">
+  <svg
+    width="18"
+    height="18"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2.2}
+    viewBox="0 0 24 24"
+  >
     <circle cx="11" cy="11" r="8" />
     <path d="m21 21-4.35-4.35" />
   </svg>
 );
 
 const PlusIcon = () => (
-  <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth={2.2} viewBox="0 0 24 24">
+  <svg
+    width="20"
+    height="20"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2.2}
+    viewBox="0 0 24 24"
+  >
     <circle cx="12" cy="12" r="10" />
     <line x1="12" y1="8" x2="12" y2="16" />
     <line x1="8" y1="12" x2="16" y2="12" />
@@ -28,7 +42,14 @@ const PlusIcon = () => (
 );
 
 const ShareIcon = () => (
-  <svg width="15" height="15" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+  <svg
+    width="15"
+    height="15"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2}
+    viewBox="0 0 24 24"
+  >
     <circle cx="18" cy="5" r="3" />
     <circle cx="6" cy="12" r="3" />
     <circle cx="18" cy="19" r="3" />
@@ -36,7 +57,14 @@ const ShareIcon = () => (
 );
 
 const HeartIcon = () => (
-  <svg width="15" height="15" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+  <svg
+    width="15"
+    height="15"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2}
+    viewBox="0 0 24 24"
+  >
     <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l7.78-7.78" />
   </svg>
 );
@@ -127,20 +155,29 @@ const INITIAL_PINS = [
 
 function PinCard({ pin, delay, showToast }) {
   const [saved, setSaved] = useState(false);
+  const [imgSrc, setImgSrc] = useState(pin.img);
 
   return (
-    <div className={styles.pinCard} style={{ animationDelay: `${delay}ms` }}>
+    <div
+      className={styles.pinCard}
+      style={{ animationDelay: `${delay}ms` }}
+    >
       <div className={styles.pinImgWrap}>
         <Image
-          src={pin.img}
+          src={imgSrc}
           alt={pin.title}
           width={600}
           height={pin.h}
+          sizes="(max-width: 768px) 100vw, 33vw"
+          loading="lazy"
+          unoptimized
           className={styles.pinImg}
+          onError={() => setImgSrc("/fallback.jpg")}
         />
 
         <div className={styles.pinOverlay}>
           <button
+            type="button"
             className={styles.saveBtn}
             onClick={() => {
               setSaved(true);
@@ -151,15 +188,24 @@ function PinCard({ pin, delay, showToast }) {
           </button>
 
           <div className={styles.pinActionsBottom}>
-            <button className={styles.pinActionBtn}>
+            <button
+              type="button"
+              className={styles.pinActionBtn}
+            >
               <ShareIcon />
             </button>
 
-            <button className={styles.pinActionBtn}>
+            <button
+              type="button"
+              className={styles.pinActionBtn}
+            >
               <HeartIcon />
             </button>
 
-            <button className={styles.pinActionBtn}>
+            <button
+              type="button"
+              className={styles.pinActionBtn}
+            >
               <DotsIcon />
             </button>
           </div>
@@ -177,10 +223,13 @@ function PinCard({ pin, delay, showToast }) {
             alt={pin.author}
             width={28}
             height={28}
+            unoptimized
             className={styles.authorAvatar}
           />
 
-          <span className={styles.authorName}>{pin.author}</span>
+          <span className={styles.authorName}>
+            {pin.author}
+          </span>
         </div>
       </div>
     </div>
@@ -191,7 +240,7 @@ function PinCard({ pin, delay, showToast }) {
 
 export default function PinterestHome() {
   const [activeCategory, setActiveCategory] = useState(0);
-  const [pins, setPins] = useState(INITIAL_PINS);
+  const [pins] = useState(INITIAL_PINS);
   const [dropOpen, setDropOpen] = useState(false);
 
   const { toast, showToast } = useToast();
@@ -219,17 +268,28 @@ export default function PinterestHome() {
   return (
     <div className={styles.homeContainer}>
       <nav className={styles.homeNav}>
-        <button className={styles.homeNavLogo}>
+        <button
+          type="button"
+          className={styles.homeNavLogo}
+        >
           <LogoSVG />
         </button>
 
-        <button className={`${styles.navBtn} ${styles.navBtnActive}`}>
-          Home
-        </button>
+        <div className={styles.navLinks}>
+          <button
+            type="button"
+            className={`${styles.navLink} ${styles.navLinkActive}`}
+          >
+            Home
+          </button>
 
-        <button className={styles.navBtn}>
-          Explore
-        </button>
+          <button
+            type="button"
+            className={styles.navLink}
+          >
+            Explore
+          </button>
+        </div>
 
         <div className={styles.searchWrap}>
           <span className={styles.searchIcon}>
@@ -243,26 +303,59 @@ export default function PinterestHome() {
         </div>
 
         <div className={styles.navRight}>
-          <button className={styles.iconBtn}>
+          <button
+            type="button"
+            className={styles.iconBtn}
+          >
             <PlusIcon />
           </button>
 
-          <div className={styles.dropdownWrap} ref={dropRef}>
-            <Image
-              src="https://i.pravatar.cc/80?img=47"
-              alt="profile"
-              width={42}
-              height={42}
-              className={styles.userAvatar}
+          <div
+            className={styles.dropdownWrap}
+            ref={dropRef}
+          >
+            <button
+              type="button"
+              className={styles.avatarBtn}
               onClick={() => setDropOpen((o) => !o)}
-            />
+            >
+              <Image
+                src="https://i.pravatar.cc/80?img=47"
+                alt="profile"
+                width={42}
+                height={42}
+                unoptimized
+                className={styles.userAvatar}
+              />
+            </button>
 
             {dropOpen && (
               <div className={styles.dropdown}>
-                <button className={styles.dropItem}>Profile</button>
-                <button className={styles.dropItem}>Boards</button>
-                <button className={styles.dropItem}>Saved</button>
-                <button className={`${styles.dropItem} ${styles.dropItemDanger}`}>
+                <button
+                  type="button"
+                  className={styles.dropItem}
+                >
+                  Profile
+                </button>
+
+                <button
+                  type="button"
+                  className={styles.dropItem}
+                >
+                  Boards
+                </button>
+
+                <button
+                  type="button"
+                  className={styles.dropItem}
+                >
+                  Saved
+                </button>
+
+                <button
+                  type="button"
+                  className={`${styles.dropItem} ${styles.dropItemDanger}`}
+                >
                   Logout
                 </button>
               </div>
@@ -275,7 +368,12 @@ export default function PinterestHome() {
         {CATEGORIES.map((cat, i) => (
           <button
             key={cat}
-            className={`${styles.pill} ${activeCategory === i ? styles.pillActive : ""}`}
+            type="button"
+            className={`${styles.pill} ${
+              activeCategory === i
+                ? styles.pillActive
+                : ""
+            }`}
             onClick={() => setActiveCategory(i)}
           >
             {cat}
@@ -296,7 +394,11 @@ export default function PinterestHome() {
         </div>
       </main>
 
-      <div className={`${styles.toast} ${toast.show ? styles.toastShow : ""}`}>
+      <div
+        className={`${styles.toast} ${
+          toast.show ? styles.toastShow : ""
+        }`}
+      >
         {toast.msg}
       </div>
     </div>
