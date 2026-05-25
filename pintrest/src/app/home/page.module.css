@@ -11,8 +11,32 @@
   font-family: 'Inter', sans-serif;
   background: #f7f7fb;
   overflow-x: hidden;
-  color: #111;
+  color: #111111;
 }
+
+/* FIXED IMAGE ISSUES */
+
+:global(img) {
+  max-width: 100%;
+  display: block;
+}
+
+:global(button),
+:global(input),
+:global(p),
+:global(span),
+:global(h1),
+:global(h2),
+:global(h3),
+:global(h4),
+:global(h5),
+:global(h6),
+:global(a),
+:global(div) {
+  color: inherit;
+}
+
+/* SCROLLBAR */
 
 :global(body::-webkit-scrollbar) {
   width: 8px;
@@ -22,6 +46,8 @@
   background: #d7d7d7;
   border-radius: 999px;
 }
+
+/* MAIN CONTAINER */
 
 .homeContainer {
   min-height: 100vh;
@@ -54,7 +80,7 @@
   border: none;
   border-radius: 18px;
   background: linear-gradient(135deg, #ff003c, #ff5f6d);
-  color: white;
+  color: #ffffff;
   font-size: 24px;
   font-weight: 800;
   cursor: pointer;
@@ -63,15 +89,49 @@
   justify-content: center;
   box-shadow: 0 8px 22px rgba(255,0,60,0.25);
   transition: 0.25s;
+  flex-shrink: 0;
 }
 
 .homeNavLogo:hover {
   transform: scale(1.05);
 }
 
+/* NAV LINKS */
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navLink {
+  height: 46px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 16px;
+  background: transparent;
+  color: #222222;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.22s;
+}
+
+.navLink:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+.navLinkActive {
+  background: #111111;
+  color: #ffffff;
+}
+
+/* SEARCH */
+
 .searchWrap {
   flex: 1;
   position: relative;
+  min-width: 0;
 }
 
 .searchIcon {
@@ -79,7 +139,8 @@
   left: 18px;
   top: 50%;
   transform: translateY(-50%);
-  color: #777;
+  color: #777777;
+  z-index: 2;
 }
 
 .searchInput {
@@ -87,12 +148,17 @@
   height: 54px;
   border: 1px solid transparent;
   border-radius: 20px;
-  background: rgba(255,255,255,0.95);
+  background: rgba(255,255,255,0.96);
   padding: 0 18px 0 52px;
   font-size: 15px;
+  color: #111111;
   outline: none;
   transition: 0.25s;
   box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+}
+
+.searchInput::placeholder {
+  color: #888888;
 }
 
 .searchInput:focus {
@@ -100,10 +166,13 @@
   box-shadow: 0 0 0 4px rgba(255,62,108,0.12);
 }
 
+/* RIGHT NAV */
+
 .navRight {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-shrink: 0;
 }
 
 .iconBtn {
@@ -111,29 +180,30 @@
   height: 48px;
   border: none;
   border-radius: 16px;
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.92);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #222;
+  color: #222222;
   transition: 0.2s;
   box-shadow: 0 6px 20px rgba(0,0,0,0.05);
 }
 
 .iconBtn:hover {
-  background: #111;
-  color: white;
+  background: #111111;
+  color: #ffffff;
   transform: translateY(-2px);
 }
 
 .userAvatar {
-  width: 48px !important;
-  height: 48px !important;
+  width: 48px;
+  height: 48px;
   border-radius: 16px;
   object-fit: cover;
   cursor: pointer;
-  border: 3px solid white;
+  border: 3px solid #ffffff;
+  background: #eeeeee;
   box-shadow: 0 6px 18px rgba(0,0,0,0.1);
 }
 
@@ -170,6 +240,7 @@
   max-width: 620px;
   position: relative;
   z-index: 2;
+  color: #111111;
 }
 
 .heroTitle span {
@@ -181,7 +252,7 @@
   max-width: 560px;
   font-size: 17px;
   line-height: 1.7;
-  color: #555;
+  color: #555555;
   position: relative;
   z-index: 2;
 }
@@ -200,7 +271,7 @@
   border: none;
   border-radius: 18px;
   background: linear-gradient(135deg, #ff003c, #ff5f6d);
-  color: white;
+  color: #ffffff;
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
@@ -217,7 +288,8 @@
   padding: 0 28px;
   border: none;
   border-radius: 18px;
-  background: white;
+  background: #ffffff;
+  color: #111111;
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
@@ -239,7 +311,7 @@
 
 .pill {
   border: none;
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.92);
   backdrop-filter: blur(10px);
   border-radius: 999px;
   padding: 14px 22px;
@@ -247,6 +319,7 @@
   cursor: pointer;
   font-size: 14px;
   font-weight: 700;
+  color: #222222;
   transition: 0.22s;
   box-shadow: 0 8px 18px rgba(0,0,0,0.05);
 }
@@ -256,8 +329,8 @@
 }
 
 .pillActive {
-  background: linear-gradient(135deg, #111, #2d2d2d);
-  color: white;
+  background: linear-gradient(135deg, #111111, #2d2d2d);
+  color: #ffffff;
 }
 
 /* MAIN */
@@ -280,7 +353,7 @@
   margin-bottom: 20px;
   border-radius: 28px;
   overflow: hidden;
-  background: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.88);
   backdrop-filter: blur(14px);
   box-shadow: 0 12px 30px rgba(0,0,0,0.06);
   transition: 0.28s;
@@ -293,13 +366,16 @@
 .pinImgWrap {
   position: relative;
   overflow: hidden;
+  background: #f0f0f0;
 }
 
 .pinImg {
   width: 100%;
+  height: auto;
   display: block;
   object-fit: cover;
   transition: 0.4s;
+  color: transparent;
 }
 
 .pinCard:hover .pinImg {
@@ -328,7 +404,7 @@
   right: 16px;
   border: none;
   background: #ff1744;
-  color: white;
+  color: #ffffff;
   padding: 12px 18px;
   border-radius: 999px;
   font-weight: 700;
@@ -351,6 +427,7 @@
   border-radius: 14px;
   background: rgba(255,255,255,0.95);
   backdrop-filter: blur(10px);
+  color: #111111;
   cursor: pointer;
   transition: 0.2s;
 }
@@ -369,13 +446,13 @@
   font-size: 17px;
   font-weight: 800;
   line-height: 1.4;
-  color: #111;
+  color: #111111;
 }
 
 .pinSource {
   margin-top: 5px;
   font-size: 13px;
-  color: #777;
+  color: #777777;
 }
 
 .pinAuthor {
@@ -386,15 +463,17 @@
 }
 
 .authorAvatar {
-  width: 38px !important;
-  height: 38px !important;
+  width: 38px;
+  height: 38px;
   border-radius: 12px;
   object-fit: cover;
+  background: #eeeeee;
 }
 
 .authorName {
   font-size: 14px;
   font-weight: 700;
+  color: #111111;
 }
 
 /* DROPDOWN */
@@ -420,6 +499,7 @@
   padding: 0 16px;
   text-align: left;
   font-weight: 600;
+  color: #111111;
   cursor: pointer;
   transition: 0.2s;
 }
@@ -439,8 +519,8 @@
   left: 50%;
   bottom: 30px;
   transform: translateX(-50%) translateY(120px);
-  background: #111;
-  color: white;
+  background: #111111;
+  color: #ffffff;
   padding: 14px 26px;
   border-radius: 999px;
   opacity: 0;
@@ -469,6 +549,10 @@
   .homeNav {
     padding: 0 12px;
     gap: 10px;
+  }
+
+  .navLinks {
+    display: none;
   }
 
   .hero {
@@ -514,6 +598,7 @@
 
   .searchInput {
     height: 48px;
+    font-size: 14px;
   }
 
   .heroTitle {
@@ -523,5 +608,17 @@
   .hero {
     width: calc(100% - 20px);
     margin: 14px auto 22px;
+  }
+
+  .iconBtn,
+  .userAvatar {
+    width: 44px;
+    height: 44px;
+  }
+
+  .homeNavLogo {
+    width: 46px;
+    height: 46px;
+    border-radius: 15px;
   }
 }
