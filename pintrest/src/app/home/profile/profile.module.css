@@ -1,29 +1,22 @@
 .profilePage {
   min-height: 100vh;
-  background: #ffffff;
+  background: #fff;
   color: #111;
 }
 
 .cover {
-  position: relative;
-  width: 100%;
-  height: 320px;
-  overflow: hidden;
-}
-
-.coverImg {
-  object-fit: cover;
+  height: 260px;
+  background: linear-gradient(
+    135deg,
+    #e60023,
+    #ff5a7a
+  );
 }
 
 .profileHeader {
   text-align: center;
   margin-top: -70px;
   padding: 0 20px;
-}
-
-.avatarWrap {
-  display: flex;
-  justify-content: center;
 }
 
 .avatar {
@@ -33,28 +26,27 @@
 }
 
 .name {
+  margin-top: 15px;
   font-size: 2rem;
   font-weight: 700;
-  margin-top: 16px;
 }
 
 .username {
-  color: #666;
-  margin-top: 6px;
+  color: #777;
+  margin-top: 4px;
 }
 
 .bio {
-  max-width: 600px;
-  margin: 14px auto;
+  max-width: 500px;
+  margin: 15px auto;
   color: #555;
-  line-height: 1.6;
 }
 
 .stats {
   display: flex;
   justify-content: center;
-  gap: 60px;
-  margin-top: 24px;
+  gap: 50px;
+  margin-top: 25px;
 }
 
 .stats div {
@@ -68,130 +60,84 @@
 
 .stats span {
   color: #777;
-  margin-top: 4px;
 }
 
-.editBtn {
-  margin-top: 24px;
-  background: #e60023;
-  color: white;
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.actions button {
   border: none;
   border-radius: 999px;
-  padding: 12px 26px;
+  padding: 12px 22px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
 }
 
-.editBtn:hover {
-  transform: translateY(-2px);
+.actions button:first-child {
+  background: #e60023;
+  color: white;
 }
 
 .section {
-  max-width: 1400px;
-  margin: 60px auto;
-  padding: 0 24px;
+  max-width: 1300px;
+  margin: 50px auto;
+  padding: 0 20px;
 }
 
 .section h2 {
-  margin-bottom: 24px;
-  font-size: 1.6rem;
+  margin-bottom: 25px;
 }
 
-.boardGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-  gap: 24px;
-}
-
-.boardCard {
-  overflow: hidden;
-  border-radius: 22px;
-  background: #fff;
-  box-shadow: 0 10px 25px rgba(0,0,0,.08);
-  transition: .3s;
-}
-
-.boardCard:hover {
-  transform: translateY(-6px);
-}
-
-.boardImg {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-}
-
-.boardInfo {
-  padding: 18px;
-}
-
-.boardInfo h3 {
-  margin-bottom: 8px;
-}
-
-.boardInfo span {
-  color: #666;
-}
-
-.masonry {
+.grid {
   column-count: 4;
   column-gap: 18px;
 }
 
-.pin {
+.card {
   break-inside: avoid;
   margin-bottom: 18px;
   overflow: hidden;
-  border-radius: 22px;
+  border-radius: 20px;
+  background: #fff;
 }
 
-.pinImg {
+.pinImage {
   width: 100%;
   height: auto;
   display: block;
-  transition: .4s;
 }
 
-.pin:hover .pinImg {
-  transform: scale(1.04);
+.pinTitle {
+  padding: 12px;
+  font-weight: 600;
 }
 
-@media (max-width: 1200px) {
-  .masonry {
+@media (max-width: 1024px) {
+  .grid {
     column-count: 3;
   }
 }
 
 @media (max-width: 768px) {
-  .cover {
-    height: 220px;
+  .grid {
+    column-count: 2;
   }
 
   .stats {
     gap: 24px;
   }
+}
 
-  .masonry {
-    column-count: 2;
+@media (max-width: 500px) {
+  .grid {
+    column-count: 1;
   }
 
   .name {
     font-size: 1.6rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .masonry {
-    column-count: 1;
-  }
-
-  .stats {
-    flex-wrap: wrap;
-  }
-
-  .avatar {
-    width: 110px;
-    height: 110px;
   }
 }
